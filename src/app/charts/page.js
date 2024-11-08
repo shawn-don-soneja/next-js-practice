@@ -1,3 +1,5 @@
+'use client';  // Add this at the top to indicate client-side rendering
+
 import React from 'react';
 import Card from 'react-bootstrap/Card';
 import Container from 'react-bootstrap/Container';
@@ -5,7 +7,6 @@ import Col from 'react-bootstrap/Col';
 import Row from 'react-bootstrap/Row';
 import { Chart } from "react-google-charts";
 import CardInfo from './CardInfo';
-
 
 export const data = [
   ["Year", "Sales", "Expenses"],
