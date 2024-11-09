@@ -31,7 +31,7 @@ const Page = (props) => {
   async function fetchData() {
     console.log('fetching');
     try {
-      const response = await fetch(`https://get.geojs.io/v1/ip/country.json?ip=8.8.8.8`, {
+      const response = await fetch(`/api/fetchSalesforceData`, {
         cache: 'no-store',  // Ensures fresh data on each request
       });
   
@@ -40,11 +40,13 @@ const Page = (props) => {
         console.error(`Error: Received status ${response.status}`);
         return []; // Exit early if the response isn't successful
       }
+      const data = await response.json();
+      setChartData(data);
+      setLoading(false);
   
       console.log('Response received:', response);
   
       // Try to parse the response as JSON
-      const data = await response.json();
       console.log('Data received:', data);
   
       return data;
