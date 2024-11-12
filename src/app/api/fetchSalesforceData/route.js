@@ -78,7 +78,8 @@ export async function GET() {
         console.log('data.length: ' + formattedData_GDP.length);
 
         return NextResponse.json({
-            gdp: formattedData_GDP, 
+            gdp: formattedData_GDP,
+            //gdp_predictions
             interest_rates: formattedData_InterestRates,
             unemployment_data: formattedData_Unemployment,
             cpi: formattedData_CPI
