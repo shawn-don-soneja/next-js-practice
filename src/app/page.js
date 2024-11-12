@@ -13,7 +13,10 @@ export default function Home() {
           height={38}
           priority
         />
+        <h1>Shawn wuz here</h1>
         <ol>
+          <li><a href="/charts">/charts</a></li>
+          <li><a href="/dashboard">/dashboard</a></li>
           <li>
             Get started by editing <code>src/app/page.js</code>.
           </li>

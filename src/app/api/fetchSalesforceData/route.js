@@ -51,15 +51,38 @@ export async function GET() {
 
         const resData = await res.json();
 
-        const formattedData = [["Date", "GDP_Server"]];
+        const formattedData_GDP = [["Date", "GDP_Server"]];
+        const formattedData_CPI = [["Date", "CPI"]];
+        const formattedData_Unemployment = [["Date", "Unemployment"]];
+        const formattedData_InterestRates = [["Date", "Interest Rates"]];
 
+        console.log('response... ' + resData);
         console.log(resData.records.length);
 
         for(const record of resData.records){
-            formattedData.push([record.Date__c, record.Value__c]);
-        }
+            //sconsole.log('type...' + record);
+            //formattedData_GDP.push([record.Date__c, record.Value__c]);
 
-        return NextResponse.json(formattedData);
+            /*
+            
+            */
+            if(record.Type__c == 'CPI')
+                formattedData_CPI.push([new Date(record.Date__c), record.Value__c]);
+            else if(record.Type__c == 'GDP')
+                formattedData_GDP.push([record.Date__c, record.Value__c]);
+            else if(record.Type__c == 'Interest Rate')
+                formattedData_InterestRates.push([record.Date__c, record.Value__c]);
+            else if(record.Type__c == 'Unemployment')
+                formattedData_Unemployment.push([record.Date__c, record.Value__c]);
+        }
+        console.log('data.length: ' + formattedData_GDP.length);
+
+        return NextResponse.json({
+            gdp: formattedData_GDP, 
+            interest_rates: formattedData_InterestRates,
+            unemployment_data: formattedData_Unemployment,
+            cpi: formattedData_CPI
+        });
     } catch (error) {
         console.error('Error fetching data:', error);
         return NextResponse.json({ error: 'Failed to fetch data' }, { status: 500 });

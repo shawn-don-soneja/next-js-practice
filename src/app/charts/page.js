@@ -8,8 +8,29 @@ import Row from 'react-bootstrap/Row';
 import { Chart } from 'react-google-charts';
 import CardInfo from './CardInfo';
 
-const options = {
-  title: "Company Performance",
+const gdp_chart_config = {
+  title: "GDP",
+  curveType: "function",
+  legend: { position: "bottom" },
+  colors: ["#2596be", "#094e89"],
+};
+
+const interest_rate_chart_config = {
+  title: "Interest Rates",
+  curveType: "function",
+  legend: { position: "bottom" },
+  colors: ["#2596be", "#094e89"],
+};
+
+const unemployment_chart_config = {
+  title: "Unemployment",
+  curveType: "function",
+  legend: { position: "bottom" },
+  colors: ["#2596be", "#094e89"],
+};
+
+const cpi_chart_config = {
+  title: "CPI (Inflation)",
   curveType: "function",
   legend: { position: "bottom" },
   colors: ["#2596be", "#094e89"],
@@ -17,7 +38,30 @@ const options = {
 
 const Page = (props) => {
   // State to store chart data
-  const [chartData, setChartData] = useState([
+
+  //1. GDP
+  const [gdpData, setGdpData] = useState([
+    ["Year", "GDP"],
+    ["2004", 1000],
+    ["2005", 1170],
+    ["2006", 660],
+    ["2007", 1030],
+  ]);
+  const [unemploymentData, setUnemploymentData] = useState([
+    ["Year", "GDP"],
+    ["2004", 1000],
+    ["2005", 1170],
+    ["2006", 660],
+    ["2007", 1030],
+  ]);
+  const [interestRateData, setInterestRateData] = useState([
+    ["Year", "GDP"],
+    ["2004", 1000],
+    ["2005", 1170],
+    ["2006", 660],
+    ["2007", 1030],
+  ]);
+  const [cpiData, setCpiData] = useState([
     ["Year", "GDP"],
     ["2004", 1000],
     ["2005", 1170],
@@ -41,10 +85,13 @@ const Page = (props) => {
         return []; // Exit early if the response isn't successful
       }
       const data = await response.json();
-      setChartData(data);
+      setGdpData(data.gdp);
+      setInterestRateData(data.interest_rates);
+      setUnemploymentData(data.unemployment_data);
+      setCpiData(data.cpi);
       setLoading(false);
   
-      console.log('Response received:', response);
+      console.log('Response received:', JSON.stringify(data));
   
       // Try to parse the response as JSON
       console.log('Data received:', data);
@@ -86,8 +133,8 @@ const Page = (props) => {
               chartType="LineChart"
               width="100%"
               height="400px"
-              data={chartData}  // Using the fetched chart data
-              options={options}
+              data={gdpData}  // Using the fetched chart data
+              options={gdp_chart_config}
             />
             <CardInfo />
           </Card>
@@ -98,8 +145,8 @@ const Page = (props) => {
               chartType="LineChart"
               width="100%"
               height="400px"
-              data={chartData}  // Using the fetched chart data
-              options={options}
+              data={unemploymentData}  // Using the fetched chart data
+              options={unemployment_chart_config}
             />
           </Card>
         </Col>
@@ -111,8 +158,8 @@ const Page = (props) => {
               chartType="LineChart"
               width="100%"
               height="400px"
-              data={chartData}  // Using the fetched chart data
-              options={options}
+              data={interestRateData}  // Using the fetched chart data
+              options={interest_rate_chart_config}
             />
             <CardInfo />
           </Card>
@@ -123,8 +170,8 @@ const Page = (props) => {
               chartType="LineChart"
               width="100%"
               height="400px"
-              data={chartData}  // Using the fetched chart data
-              options={options}
+              data={cpiData}  // Using the fetched chart data
+              options={cpi_chart_config}
             />
           </Card>
         </Col>
