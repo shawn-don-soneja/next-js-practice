@@ -51,35 +51,50 @@ export async function GET() {
 
         const resData = await res.json();
 
-        const formattedData_GDP = [["Date", "GDP_Server"]];
+        const formattedData_GDP = [["Date", "GDP_Server", "Predictions  "]];
+        const formattedData_GDP_predictions = [];
         const formattedData_CPI = [["Date", "CPI"]];
         const formattedData_Unemployment = [["Date", "Unemployment"]];
         const formattedData_InterestRates = [["Date", "Interest Rates"]];
 
-        console.log('response... ' + resData);
+        //console.log('response... ' + JSON.stringify(resData));
         console.log(resData.records.length);
 
-        for(const record of resData.records){
-            //sconsole.log('type...' + record);
-            //formattedData_GDP.push([record.Date__c, record.Value__c]);
-
-            /*
-            
-            */
+        for(var x=0; x<resData.records.length;x++){
+            const record = resData.records[x];
             if(record.Type__c == 'CPI')
                 formattedData_CPI.push([new Date(record.Date__c), record.Value__c]);
-            else if(record.Type__c == 'GDP')
-                formattedData_GDP.push([record.Date__c, record.Value__c]);
+            else if(record.Type__c == 'GDP'){
+                console.log('record type name: ' + record.RecordType.Name);
+                    if(record.RecordType.Name == 'Prediction'){
+                        //if the previous ticket was active, add a connecting data point first
+                        if(x - 1 > 0){
+                            if(resData.records[x - 1].RecordType.Name != 'Prediction'){
+                                const previousRecord = resData.records[x - 1];
+                                formattedData_GDP.push([record.Date__c, record.Value__c, record.Value__c]);
+                                continue;
+                            }
+                        }
+
+                        //i am flipping these null values, such that the prediction and actual data shows as
+                        //separate lines on the final client-side chart
+                        formattedData_GDP.push([record.Date__c, record.Value__c, null]);
+                    }else{
+                        formattedData_GDP.push([record.Date__c, null, record.Value__c]);
+                        //if the previous ticket was active, add a connecting data point
+                    }
+            }
             else if(record.Type__c == 'Interest Rate')
                 formattedData_InterestRates.push([record.Date__c, record.Value__c]);
             else if(record.Type__c == 'Unemployment')
                 formattedData_Unemployment.push([record.Date__c, record.Value__c]);
         }
+
         console.log('data.length: ' + formattedData_GDP.length);
 
         return NextResponse.json({
             gdp: formattedData_GDP,
-            //gdp_predictions
+            //gdp_predictions: formattedData_GDP_predictions,
             interest_rates: formattedData_InterestRates,
             unemployment_data: formattedData_Unemployment,
             cpi: formattedData_CPI

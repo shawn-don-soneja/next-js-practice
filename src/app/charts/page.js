@@ -12,7 +12,7 @@ const gdp_chart_config = {
   title: "GDP",
   curveType: "function",
   legend: { position: "bottom" },
-  colors: ["#2596be", "#094e89"],
+  colors: ["#7ACCC8", "#094e89"],
 };
 
 const interest_rate_chart_config = {
