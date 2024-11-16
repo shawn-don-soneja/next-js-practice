@@ -1,6 +1,7 @@
 'use client';  // Client-side rendering
 
 import React, { useEffect, useState } from 'react';
+import Badge from 'react-bootstrap/Badge';
 import Card from 'react-bootstrap/Card';
 import Container from 'react-bootstrap/Container';
 import Col from 'react-bootstrap/Col';
@@ -136,6 +137,7 @@ const Page = (props) => {
               data={gdpData}  // Using the fetched chart data
               options={gdp_chart_config}
             />
+            <h5 className='m-3'>Trend: <Badge bg="secondary">Increasing</Badge></h5>
             <CardInfo />
           </Card>
         </Col>
