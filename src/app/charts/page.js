@@ -123,7 +123,7 @@ const Page = (props) => {
         <Col>
           <h1 className="mt-4 m-3">Financial Dashboard</h1>
           <h5 className="mt-2 m-3 text-muted">
-            Here, we’re tracking four key macroeconomic indicators: <b>Interest Rates, Unemployment, Inflation, and GDP</b>
+            Here, we’re tracking four key macroeconomic indicators: <b>GDP, Unemployment, Interest Rates, and Inflation</b>
           </h5>
         </Col>
       </Row>

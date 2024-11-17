@@ -1,6 +1,8 @@
 // app/api/fetchData/route.js
 import { NextResponse } from 'next/server';
 
+//this file is just for a public api, to make sure i have connectivity from my server to my client, for testing
+
 export async function GET() {
     console.log('API route: Received request'); // Start of API route
     try {
