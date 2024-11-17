@@ -150,6 +150,8 @@ const Page = (props) => {
               data={unemploymentData}  // Using the fetched chart data
               options={unemployment_chart_config}
             />
+            <h5 className='m-3'>Trend: <Badge bg="secondary">---</Badge></h5>
+            <CardInfo dataType="Unemployment"/>
           </Card>
         </Col>
       </Row>
@@ -163,7 +165,8 @@ const Page = (props) => {
               data={interestRateData}  // Using the fetched chart data
               options={interest_rate_chart_config}
             />
-            <CardInfo />
+            <h5 className='m-3'>Trend: <Badge bg="secondary">---</Badge></h5>
+            <CardInfo dataType="Interest Rate"/>
           </Card>
         </Col>
         <Col className="m-3">
@@ -175,6 +178,8 @@ const Page = (props) => {
               data={cpiData}  // Using the fetched chart data
               options={cpi_chart_config}
             />
+            <h5 className='m-3'>Trend: <Badge bg="secondary">---</Badge></h5>
+            <CardInfo dataType="CPI"/>
           </Card>
         </Col>
       </Row>
