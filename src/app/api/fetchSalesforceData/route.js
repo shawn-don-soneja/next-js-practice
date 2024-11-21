@@ -6,8 +6,9 @@ export async function GET() {
     try {
         const apiUrl = process.env.SF_AUTH_URL;
         const dataUrl = process.env.SF_DATA_URL;
+        const trendDataUrl = process.env.SF_TREND_DATA_URL;
 
-        // Make a secure call to the external API using the URL and API key from the environment
+        // Get Salesforce Access Token
         const auth = await fetch(apiUrl);
         const authData = await auth.json();
 
@@ -28,7 +29,7 @@ export async function GET() {
             throw new Error(`API call failed with status ${res.status}`);
         }
         
-        // Make a secure call to the external API using the URL and API key from the environment
+        // Retrieve Financial Data
         const res = await fetch(dataUrl, {
             headers: {
             Authorization: `Bearer ${authData.access_token}`,
@@ -59,6 +60,7 @@ export async function GET() {
         //console.log('response... ' + JSON.stringify(resData));
         console.log(resData.records.length);
 
+        //collect and organize all data for the front-end to show
         for(var x=0; x<resData.records.length;x++){
             const record = resData.records[x];
             if(record.Type__c == 'CPI'){
@@ -144,12 +146,57 @@ export async function GET() {
 
         console.log('data.length: ' + formattedData_GDP.length);
 
+        // Retrieve Trend Data
+        const trends = await fetch(trendDataUrl, {
+            headers: {
+            Authorization: `Bearer ${authData.access_token}`,
+            },
+        })
+
+        // Handle response errors
+        if (!trends.ok) {
+            // Log error details if the response is not successful
+            console.error('Error: API call failed');
+            console.error('Status:', trends.status);
+            console.error('Status Text:', trends.statusText);
+
+            // You can also log the response body if you need to inspect it (useful for debugging)
+            const errorData = await trends.json();
+            console.error('Error Data:', errorData);
+
+            throw new Error(`API call failed with status ${trends.status}`);
+        }
+
+        const trendData = await trends.json();
+
+        var gdpTrend = "0";
+        var unemploymentTrend = "0";
+        var interestRateTrend = "0";
+        var cpiTrend = "0";
+
+        for(var x=0; x<trendData.records.length;x++){
+            const record = trendData.records[x];
+            if(record.Type__c == 'GDP'){
+                gdpTrend = record.Value__c;
+            }else if(record.Type__c == 'CPI'){
+                cpiTrend = record.Value__c;
+            }else if(record.Type__c == 'Interest Rate'){
+                interestRateTrend = record.Value__c;
+            }else if(record.Type__c == 'Unemployment'){
+                unemploymentTrend = record.Value__c;
+            }
+        }
+
+        //return response
         return NextResponse.json({
             gdp: formattedData_GDP,
-            //gdp_predictions: formattedData_GDP_predictions,
             interest_rates: formattedData_InterestRates,
             unemployment_data: formattedData_Unemployment,
-            cpi: formattedData_CPI
+            cpi: formattedData_CPI,
+            gdpTrend: gdpTrend,
+            interestRateTrend: interestRateTrend,
+            unemploymentTrend: unemploymentTrend,
+            cpiTrend: cpiTrend
         });
     } catch (error) {
         console.error('Error fetching data:', error);

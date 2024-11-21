@@ -38,6 +38,9 @@ const cpi_chart_config = {
 };
 
 const Page = (props) => {
+  //loading state
+  const [loading, setLoading] = useState(true);
+
   // State to store chart data
 
   //1. GDP
@@ -70,14 +73,18 @@ const Page = (props) => {
     ["2007", 1030],
   ]);
   
-  const [loading, setLoading] = useState(true);
+  // State to store trend data
+  const [gdpTrend, setGdpTrend] = useState();
+  const [unemploymentTrend, setUnemploymentTrend] = useState();
+  const [interestRateTrend, setInterestRateTrend] = useState();
+  const [cpiTrend, setCpiTrend] = useState();
 
   // This function fetches data from the server
   async function fetchData() {
     console.log('fetching');
     try {
       const response = await fetch(`/api/fetchSalesforceData`, {
-        cache: 'no-store',  // Ensures fresh data on each request
+        //cache: 'no-store',  // Ensures fresh data on each request if enabled
       });
   
       // Check if the response is OK
@@ -90,6 +97,10 @@ const Page = (props) => {
       setInterestRateData(data.interest_rates);
       setUnemploymentData(data.unemployment_data);
       setCpiData(data.cpi);
+      setGdpTrend(data.gdpTrend);
+      setUnemploymentTrend(data.unemploymentTrend);
+      setCpiTrend(data.cpiTrend);
+      setInterestRateTrend(data.interestRateTrend);
       setLoading(false);
   
       console.log('Response received:', JSON.stringify(data));
@@ -137,7 +148,7 @@ const Page = (props) => {
               data={gdpData}  // Using the fetched chart data
               options={gdp_chart_config}
             />
-            <h5 className='m-3'>Trend: <Badge bg="secondary">Increasing</Badge></h5>
+            <h5 className='m-3'>Trend: <Badge bg="secondary">{gdpTrend > 0 ? "Increasing" : "Decreasing"} ({Number(gdpTrend.toFixed(2))}/quarter)</Badge></h5>
             <CardInfo />
           </Card>
         </Col>
@@ -150,7 +161,7 @@ const Page = (props) => {
               data={unemploymentData}  // Using the fetched chart data
               options={unemployment_chart_config}
             />
-            <h5 className='m-3'>Trend: <Badge bg="secondary">---</Badge></h5>
+            <h5 className='m-3'>Trend: <Badge bg="secondary">{unemploymentTrend > 0 ? "Increasing" : "Decreasing"} ({Number(unemploymentTrend.toFixed(2))}/month)</Badge></h5>
             <CardInfo dataType="Unemployment"/>
           </Card>
         </Col>
@@ -165,7 +176,7 @@ const Page = (props) => {
               data={interestRateData}  // Using the fetched chart data
               options={interest_rate_chart_config}
             />
-            <h5 className='m-3'>Trend: <Badge bg="secondary">---</Badge></h5>
+            <h5 className='m-3'>Trend: <Badge bg="secondary">{interestRateTrend > 0 ? "Increasing" : "Decreasing"} ({Number(interestRateTrend.toFixed(2))}/month)</Badge></h5>
             <CardInfo dataType="Interest Rate"/>
           </Card>
         </Col>
@@ -178,7 +189,7 @@ const Page = (props) => {
               data={cpiData}  // Using the fetched chart data
               options={cpi_chart_config}
             />
-            <h5 className='m-3'>Trend: <Badge bg="secondary">---</Badge></h5>
+            <h5 className='m-3'>Trend: <Badge bg="secondary">{cpiTrend > 0 ? "Increasing" : "Decreasing"} ({Number(cpiTrend.toFixed(2))}/month)</Badge></h5>
             <CardInfo dataType="CPI"/>
           </Card>
         </Col>
