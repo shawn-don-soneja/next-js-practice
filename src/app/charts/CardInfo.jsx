@@ -5,8 +5,8 @@ import Accordion from 'react-bootstrap/Accordion';
 const DataTypeDescription = (props) => {
   const unemploymentDescription = "Unemployment represents the proportion of people in the labor force who are unemployed and actively looking for work.";
   const gdpDescription = "Gross Domestic Product (GDP) is the total value of all goods and services produced within a country over a specific time period. It's a key measure of economic health, with growth in GDP indicating economic expansion and declines signaling potential recession.";
-  const interestRateDescription = "Interest rates are the percentage charged by lenders or earned by depositors for the use of money over a specific period. They are a key tool for monetary policy, influencing borrowing, spending, and investment in the economy. When interest rates are rising, borrowing costs increase, which can slow economic growth. Consider reducing high-interest debt, locking in fixed-rate loans, and focusing on investments that perform well in higher-rate environments, like bonds with short durations. For businesses, higher rates mean higher financing costs, so efficient cash flow management becomes critical. For individuals, it’s wise to prioritize saving, as higher rates can increase returns on savings accounts and fixed-income investments."
-  const cpiDescription = "Consumer Price Index (CPI) measures the average change over time in the prices paid by consumers for goods and services, making it a key indicator of inflation. A rising CPI indicates increasing prices, while a declining CPI suggests deflation. When CPI is increasing, it reflects inflation, which can erode purchasing power. Consider investing in assets that typically hedge against inflation, such as real estate or commodities, and review your budget to account for rising costs. For businesses, higher inflation may increase input costs, necessitating price adjustments or cost-saving measures. Individuals should prioritize maintaining the real value of savings and income by focusing on inflation-protected financial instruments."
+  const interestRateDescription = "Interest rates are the percentage charged by lenders or earned by depositors for the use of money over a specific period. They are a key tool for monetary policy, influencing borrowing, spending, and investment in the economy."
+  const cpiDescription = "Consumer Price Index (CPI) measures the average change over time in the prices paid by consumers for goods and services, making it a key indicator of inflation."
 
 
 
@@ -22,12 +22,44 @@ const DataTypeDescription = (props) => {
   return gdpDescription
 }
 
-const WhatToDoText = () => {
-  // I could just return one long text, covering all increasing, stagnant, and decreasing... less code needed overall... less room to break...
-  const gdpSuccess = "When GDP is increasing, consider investing in growth sectors and inflation-resistant assets. Review any planned borrowing, as interest rates might rise, and focus on savings to preserve purchasing power. Businesses could take advantage of the growth to expand, while individuals should prepare for potential inflation and future economic cycles.";
+const WhatToDoText = (props) => {
+  const unemploymentNext = "...";
+  const gdpNext = "When GDP is increasing, consider investing in growth sectors and inflation-resistant assets. Review any planned borrowing, as interest rates might rise, and focus on savings to preserve purchasing power. Businesses could take advantage of the growth to expand, while individuals should prepare for potential inflation and future economic cycles.";
+  const interestRateNext = "When interest rates are rising, borrowing costs increase, which can slow economic growth. Consider reducing high-interest debt, locking in fixed-rate loans, and focusing on investments that perform well in higher-rate environments, like bonds with short durations. For businesses, higher rates mean higher financing costs, so efficient cash flow management becomes critical. For individuals, it’s wise to prioritize saving, as higher rates can increase returns on savings accounts and fixed-income investments."
+  const cpiNext = "A rising CPI indicates increasing prices, while a declining CPI suggests deflation. When CPI is increasing, it reflects inflation, which can erode purchasing power. Consider investing in assets that typically hedge against inflation, such as real estate or commodities, and review your budget to account for rising costs. For businesses, higher inflation may increase input costs, necessitating price adjustments or cost-saving measures. Individuals should prioritize maintaining the real value of savings and income by focusing on inflation-protected financial instruments."
 
 
-  return <div><br/>{gdpSuccess}</div>
+
+  if(props.dataType == "Unemployment")
+    return unemploymentNext
+
+  if(props.dataType == "Interest Rate")
+    return interestRateNext
+
+  if(props.dataType == "CPI")
+    return cpiNext
+  
+  return gdpNext
+}
+
+const WhereDidThisComeFrom = (props) => {
+  const unemploymentNext = "Came from BLS";
+  const gdpNext = "Came from BLS";
+  const interestRateNext = "Need to check"
+  const cpiNext = "Somewhere"
+
+
+
+  if(props.dataType == "Unemployment")
+    return unemploymentNext
+
+  if(props.dataType == "Interest Rate")
+    return interestRateNext
+
+  if(props.dataType == "CPI")
+    return cpiNext
+  
+  return gdpNext
 }
 
 // Defining the functional component
@@ -43,19 +75,14 @@ const CardInfo = (props) => {
         <Accordion.Header>What does this mean?</Accordion.Header>
         <Accordion.Body>
           <DataTypeDescription dataType={props.dataType}/>
-          <WhatToDoText />
+          <br/><br/>
+          <WhatToDoText dataType={props.dataType}/>
         </Accordion.Body>
       </Accordion.Item>
       <Accordion.Item eventKey="1">
         <Accordion.Header>Where did this data come from?</Accordion.Header>
         <Accordion.Body>
-          Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do
-          eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad
-          minim veniam, quis nostrud exercitation ullamco laboris nisi ut
-          aliquip ex ea commodo consequat. Duis aute irure dolor in
-          reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla
-          pariatur. Excepteur sint occaecat cupidatat non proident, sunt in
-          culpa qui officia deserunt mollit anim id est laborum.
+          <WhereDidThisComeFrom dataType={props.dataType} />
         </Accordion.Body>
       </Accordion.Item>
     </Accordion>
