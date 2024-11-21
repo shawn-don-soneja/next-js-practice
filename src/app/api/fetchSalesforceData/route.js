@@ -52,10 +52,10 @@ export async function GET() {
 
         const resData = await res.json();
 
-        const formattedData_GDP = [["Date", "GDP_Server", "Predictions"]];
-        const formattedData_CPI = [["Date", "CPI", "Predictions"]];
-        const formattedData_Unemployment = [["Date", "Unemployment", "Predictions"]];
-        const formattedData_InterestRates = [["Date", "Interest Rates", "Predictions"]];
+        const formattedData_GDP = [["Date", "GDP Predictions", "GDP Actual"]];
+        const formattedData_CPI = [["Date", "CPI Predictions", "CPI Actual"]];
+        const formattedData_Unemployment = [["Date", "Unemployment Predictions", "Unemployment Actual"]];
+        const formattedData_InterestRates = [["Date", "Interest Rates Predictions", "Interest Rates Actual"]];
 
         //console.log('response... ' + JSON.stringify(resData));
         console.log(resData.records.length);
