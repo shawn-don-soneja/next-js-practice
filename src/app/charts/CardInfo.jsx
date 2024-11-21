@@ -8,8 +8,6 @@ const DataTypeDescription = (props) => {
   const interestRateDescription = "Interest rates are the percentage charged by lenders or earned by depositors for the use of money over a specific period. They are a key tool for monetary policy, influencing borrowing, spending, and investment in the economy."
   const cpiDescription = "Consumer Price Index (CPI) measures the average change over time in the prices paid by consumers for goods and services, making it a key indicator of inflation."
 
-
-
   if(props.dataType == "Unemployment")
     return unemploymentDescription
 
@@ -28,8 +26,6 @@ const WhatToDoText = (props) => {
   const interestRateNext = "When interest rates are rising, borrowing costs increase, which can slow economic growth. Consider reducing high-interest debt, locking in fixed-rate loans, and focusing on investments that perform well in higher-rate environments, like bonds with short durations. For businesses, higher rates mean higher financing costs, so efficient cash flow management becomes critical. For individuals, it’s wise to prioritize saving, as higher rates can increase returns on savings accounts and fixed-income investments."
   const cpiNext = "A rising CPI indicates increasing prices, while a declining CPI suggests deflation. When CPI is increasing, it reflects inflation, which can erode purchasing power. Consider investing in assets that typically hedge against inflation, such as real estate or commodities, and review your budget to account for rising costs. For businesses, higher inflation may increase input costs, necessitating price adjustments or cost-saving measures. Individuals should prioritize maintaining the real value of savings and income by focusing on inflation-protected financial instruments."
 
-
-
   if(props.dataType == "Unemployment")
     return unemploymentNext
 
@@ -47,8 +43,6 @@ const WhereDidThisComeFrom = (props) => {
   const gdpNext = "Came from BLS";
   const interestRateNext = "Need to check"
   const cpiNext = "Somewhere"
-
-
 
   if(props.dataType == "Unemployment")
     return unemploymentNext
