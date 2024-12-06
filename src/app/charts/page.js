@@ -13,28 +13,28 @@ const gdp_chart_config = {
   title: "GDP",
   curveType: "function",
   legend: { position: "bottom" },
-  colors: ["#7ACCC8", "#094e89"],
+  colors: ["#ff8c00", "#094e89"],
 };
 
 const interest_rate_chart_config = {
   title: "Interest Rates",
   curveType: "function",
   legend: { position: "bottom" },
-  colors: ["#2596be", "#094e89"],
+  colors: ["#ff8c00", "#094e89"],
 };
 
 const unemployment_chart_config = {
   title: "Unemployment",
   curveType: "function",
   legend: { position: "bottom" },
-  colors: ["#2596be", "#094e89"],
+  colors: ["#ff8c00", "#094e89"],
 };
 
 const cpi_chart_config = {
   title: "CPI (Inflation)",
   curveType: "function",
   legend: { position: "bottom" },
-  colors: ["#2596be", "#094e89"],
+  colors: ["#ff8c00", "#094e89"],
 };
 
 const Page = (props) => {
