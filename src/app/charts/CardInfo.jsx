@@ -39,10 +39,11 @@ const WhatToDoText = (props) => {
 }
 
 const WhereDidThisComeFrom = (props) => {
-  const unemploymentNext = "Came from BLS";
+  const unemploymentNext = <>Source: <a href='https://www.bls.gov/data/' target="_blank">Bureau of Labor Statistics (BLS)</a> <br/>Timeseries: https://api.bls.gov/publicAPI/v2/timeseries/data/LAUCN040010000000005</>;
   const gdpNext = "Came from BLS";
   const interestRateNext = "Need to check"
   const cpiNext = "Somewhere"
+  
 
   if(props.dataType == "Unemployment")
     return unemploymentNext
