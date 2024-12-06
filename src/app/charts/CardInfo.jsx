@@ -39,7 +39,11 @@ const WhatToDoText = (props) => {
 }
 
 const WhereDidThisComeFrom = (props) => {
-  const unemploymentNext = <>Source: <a href='https://www.bls.gov/data/' target="_blank">Bureau of Labor Statistics (BLS)</a> <br/>Timeseries: https://api.bls.gov/publicAPI/v2/timeseries/data/LAUCN040010000000005</>;
+  const unemploymentNext = <>
+    Source: <br/><a href='https://www.bls.gov/data/' target="_blank">Bureau of Labor Statistics (BLS)</a><br/><br/>
+    Timeseries: <a href='https://api.bls.gov/publicAPI/v2/timeseries/data/LAUCN040010000000005' target="_blank">https://api.bls.gov/publicAPI/v2/timeseries/data/LAUCN040010000000005</a><br/><br/>
+    This time series technically represents <b>Arizona Local Unemployment</b>, in millions. I understood this in depth later on in my build. Needs to be changed to something more relevant to me, but using it as &apos;generally&apos; representative for now.
+  </>;
   const gdpNext = "Came from BLS";
   const interestRateNext = "Need to check"
   const cpiNext = "Somewhere"

@@ -10,7 +10,7 @@ import { Chart } from 'react-google-charts';
 import CardInfo from './CardInfo';
 
 const gdp_chart_config = {
-  title: "GDP",
+  title: "GDP (M$)",
   curveType: "function",
   legend: { position: "bottom" },
   colors: ["#ff8c00", "#094e89"],
@@ -148,7 +148,7 @@ const Page = (props) => {
               data={gdpData}  // Using the fetched chart data
               options={gdp_chart_config}
             />
-            <h5 className='m-3'>Trend: <Badge bg="secondary">{gdpTrend > 0 ? "Increasing" : "Decreasing"} ({Number(gdpTrend.toFixed(2))}/quarter)</Badge></h5>
+            <h5 className='m-3'>Trend: <Badge bg="secondary">{gdpTrend > 0 ? "Increasing" : "Decreasing"} (${Number(gdpTrend.toFixed(2))}M/quarter)</Badge></h5>
             <CardInfo />
           </Card>
         </Col>
