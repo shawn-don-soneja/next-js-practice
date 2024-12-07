@@ -24,7 +24,7 @@ const interest_rate_chart_config = {
 };
 
 const unemployment_chart_config = {
-  title: "Unemployment (M)",
+  title: "Unemployment (#)",
   curveType: "function",
   legend: { position: "bottom" },
   colors: ["#ff8c00", "#094e89"],
@@ -161,7 +161,7 @@ const Page = (props) => {
               data={unemploymentData}  // Using the fetched chart data
               options={unemployment_chart_config}
             />
-            <h5 className='m-3'>Trend: <Badge bg="secondary">{unemploymentTrend > 0 ? "Increasing" : "Decreasing"} ({Number(unemploymentTrend.toFixed(2))}M/month)</Badge></h5>
+            <h5 className='m-3'>Trend: <Badge bg="secondary">{unemploymentTrend > 0 ? "Increasing" : "Decreasing"} ({Number(unemploymentTrend.toFixed(2))} employed persons/month)</Badge></h5>
             <CardInfo dataType="Unemployment"/>
           </Card>
         </Col>
@@ -222,6 +222,12 @@ const Page = (props) => {
                   <li><a href='https://www.bls.gov/help/hlpforma.htm#AP' target='_blank'>Timeseries Code Naming Convention (AP - Average Price)</a></li>
                   <li><a href='https://download.bls.gov/pub/time.series/ap/ap.area' target='_blank'>Areas</a></li>
                   <li><a href='https://download.bls.gov/pub/time.series/ap/ap.item' target='_blank'>Items</a></li>
+                </ul>
+                <li>Interesting</li>
+                <ul>
+                  <li>https://www.bls.gov/charts/state-employment-and-unemployment/state-unemployment-rates-map.htm#</li>
+                  <li>https://www.bls.gov/eag/eag.us.htm</li>
+                  <li>https://data.bls.gov/series-report - Series ID Checker</li>
                 </ul>
               </ul>
             </ul>

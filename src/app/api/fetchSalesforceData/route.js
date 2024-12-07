@@ -54,7 +54,7 @@ export async function GET() {
 
         const formattedData_GDP = [["Date", "GDP Predictions ($T)", "GDP Actual ($T)"]];
         const formattedData_CPI = [["Date", "CPI Predictions ($)", "CPI Actual ($)"]];
-        const formattedData_Unemployment = [["Date", "Unemployment Predictions (M)", "Unemployment Actual (M)"]];
+        const formattedData_Unemployment = [["Date", "Unemployment Predictions (#)", "Unemployment Actual (#)"]];
         const formattedData_InterestRates = [["Date", "Interest Rates Predictions (%)", "Interest Rates Actual (%)"]];
 
         //console.log('response... ' + JSON.stringify(resData));

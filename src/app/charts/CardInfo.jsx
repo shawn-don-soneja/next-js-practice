@@ -42,7 +42,7 @@ const WhereDidThisComeFrom = (props) => {
   const unemploymentNext = <>
     Source: <br/><a href='https://www.bls.gov/data/' target="_blank">Bureau of Labor Statistics (BLS)</a><br/><br/>
     Timeseries: <a href='https://api.bls.gov/publicAPI/v2/timeseries/data/LAUCN040010000000005' target="_blank">https://<b>api.bls.gov</b>/publicAPI/v2/timeseries/data/LAUCN040010000000005</a><br/><br/>
-    This time series represents <b>Arizona Local Unemployment Count</b>, in millions. I understood this better later on in my build. This needs to be changed to something more relevant to me, but I&apos;m using it to be &apos;generally&apos; representative of unemployment for now.
+    This time series represents <b>Arizona Local Unemployment Count</b> (number of employed people), for Apache Country, AZ. I understood this better later on in my build. This needs to be changed to a georgraphy more relevant to me, but I&apos;m using it to be &apos;generally&apos; representative of unemployment for now.
   </>;
   const gdpNext = <>
     Source: <br/><a href='https://www.bea.gov/' target="_blank">Bureau of Economic Analysis (BEA)</a><br/><br/>
@@ -94,6 +94,8 @@ const CardInfo = (props) => {
           <DataTypeDescription dataType={props.dataType}/>
           <br/><br/>
           <WhatToDoText dataType={props.dataType}/>
+          <br/><i>(Source: ChatGPT)</i>
+          <br/>
         </Accordion.Body>
       </Accordion.Item>
       <Accordion.Item eventKey="1">
