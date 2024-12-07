@@ -10,28 +10,28 @@ import { Chart } from 'react-google-charts';
 import CardInfo from './CardInfo';
 
 const gdp_chart_config = {
-  title: "GDP (M$)",
+  title: "GDP ($T)",
   curveType: "function",
   legend: { position: "bottom" },
   colors: ["#ff8c00", "#094e89"],
 };
 
 const interest_rate_chart_config = {
-  title: "Interest Rates",
+  title: "Interest Rates (%)",
   curveType: "function",
   legend: { position: "bottom" },
   colors: ["#ff8c00", "#094e89"],
 };
 
 const unemployment_chart_config = {
-  title: "Unemployment",
+  title: "Unemployment (M)",
   curveType: "function",
   legend: { position: "bottom" },
   colors: ["#ff8c00", "#094e89"],
 };
 
 const cpi_chart_config = {
-  title: "CPI (Inflation)",
+  title: "Inflation ($)",
   curveType: "function",
   legend: { position: "bottom" },
   colors: ["#ff8c00", "#094e89"],
@@ -134,7 +134,7 @@ const Page = (props) => {
         <Col>
           <h1 className="mt-4 m-3">Financial Dashboard</h1>
           <h5 className="mt-2 m-3 text-muted">
-            Here, we’re tracking four key macroeconomic indicators: <b>GDP, Unemployment, Interest Rates, and Inflation</b>
+            Here we’re tracking four key macroeconomic indicators: <b>GDP, Unemployment, Interest Rates, and Inflation</b>
           </h5>
         </Col>
       </Row>
@@ -148,7 +148,7 @@ const Page = (props) => {
               data={gdpData}  // Using the fetched chart data
               options={gdp_chart_config}
             />
-            <h5 className='m-3'>Trend: <Badge bg="secondary">{gdpTrend > 0 ? "Increasing" : "Decreasing"} (${Number(gdpTrend.toFixed(2))}M/quarter)</Badge></h5>
+            <h5 className='m-3'>Trend: <Badge bg="secondary">{gdpTrend > 0 ? "Increasing" : "Decreasing"} (${Number(gdpTrend.toFixed(2))}B/quarter)</Badge></h5>
             <CardInfo />
           </Card>
         </Col>
@@ -161,7 +161,7 @@ const Page = (props) => {
               data={unemploymentData}  // Using the fetched chart data
               options={unemployment_chart_config}
             />
-            <h5 className='m-3'>Trend: <Badge bg="secondary">{unemploymentTrend > 0 ? "Increasing" : "Decreasing"} ({Number(unemploymentTrend.toFixed(2))}/month)</Badge></h5>
+            <h5 className='m-3'>Trend: <Badge bg="secondary">{unemploymentTrend > 0 ? "Increasing" : "Decreasing"} ({Number(unemploymentTrend.toFixed(2))}M/month)</Badge></h5>
             <CardInfo dataType="Unemployment"/>
           </Card>
         </Col>
@@ -176,7 +176,7 @@ const Page = (props) => {
               data={interestRateData}  // Using the fetched chart data
               options={interest_rate_chart_config}
             />
-            <h5 className='m-3'>Trend: <Badge bg="secondary">{interestRateTrend > 0 ? "Increasing" : "Decreasing"} ({Number(interestRateTrend.toFixed(2))}/month)</Badge></h5>
+            <h5 className='m-3'>Trend: <Badge bg="secondary">{interestRateTrend > 0 ? "Increasing" : "Decreasing"} ({Number(interestRateTrend.toFixed(2))}%/month)</Badge></h5>
             <CardInfo dataType="Interest Rate"/>
           </Card>
         </Col>
@@ -189,8 +189,42 @@ const Page = (props) => {
               data={cpiData}  // Using the fetched chart data
               options={cpi_chart_config}
             />
-            <h5 className='m-3'>Trend: <Badge bg="secondary">{cpiTrend > 0 ? "Increasing" : "Decreasing"} ({Number(cpiTrend.toFixed(2))}/month)</Badge></h5>
+            <h5 className='m-3'>Trend: <Badge bg="secondary">{cpiTrend > 0 ? "Increasing" : "Decreasing"} (${Number(cpiTrend.toFixed(2))}/month)</Badge></h5>
             <CardInfo dataType="CPI"/>
+          </Card>
+        </Col>
+      </Row>
+      <Row>
+      <Col className="m-3">
+          <Card>
+            <h5 className="m-3">Useful Links</h5>
+            <ul>
+              <li><b>Understanding BLS API</b></li>
+              
+              <ul>
+                <li>General</li>
+                <ul>
+                  <li><a href="https://www.bls.gov/developers/api_FAQs.htm" target='_blank'>API FAQ</a></li>
+                </ul>
+              </ul>
+              <ul>
+                <li>Unemployment</li>
+                <ul>
+                  <li><a href='https://www.bls.gov/bls/unemployment.htm' target='_blank'>Unemployment</a></li>
+                  <li><a href="https://www.bls.gov/help/hlpforma.htm#CE" target='_blank'>Timeseries Code Naming Convention (CE = Employment)</a></li>
+                  <li><a href="https://download.bls.gov/pub/time.series/la/la.area_type" target='_blank'>Types of Areas</a></li>
+                  <li><a href="https://download.bls.gov/pub/time.series/la/la.area" target='_blank'>Area Codes</a></li>
+                  <li><a href="https://download.bls.gov/pub/time.series/la/la.measure" target='_blank'>Measurement Types</a></li>
+                </ul>
+                <li>CPI</li>
+                <ul>
+                  <li><a href='https://www.bls.gov/bls/inflation.htm' target='_blank'>Inflation (CPI)</a></li>
+                  <li><a href='https://www.bls.gov/help/hlpforma.htm#AP' target='_blank'>Timeseries Code Naming Convention (AP - Average Price)</a></li>
+                  <li><a href='https://download.bls.gov/pub/time.series/ap/ap.area' target='_blank'>Areas</a></li>
+                  <li><a href='https://download.bls.gov/pub/time.series/ap/ap.item' target='_blank'>Items</a></li>
+                </ul>
+              </ul>
+            </ul>
           </Card>
         </Col>
       </Row>

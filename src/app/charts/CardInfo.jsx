@@ -41,12 +41,30 @@ const WhatToDoText = (props) => {
 const WhereDidThisComeFrom = (props) => {
   const unemploymentNext = <>
     Source: <br/><a href='https://www.bls.gov/data/' target="_blank">Bureau of Labor Statistics (BLS)</a><br/><br/>
-    Timeseries: <a href='https://api.bls.gov/publicAPI/v2/timeseries/data/LAUCN040010000000005' target="_blank">https://api.bls.gov/publicAPI/v2/timeseries/data/LAUCN040010000000005</a><br/><br/>
-    This time series technically represents <b>Arizona Local Unemployment</b>, in millions. I understood this in depth later on in my build. Needs to be changed to something more relevant to me, but using it as &apos;generally&apos; representative for now.
+    Timeseries: <a href='https://api.bls.gov/publicAPI/v2/timeseries/data/LAUCN040010000000005' target="_blank">https://<b>api.bls.gov</b>/publicAPI/v2/timeseries/data/LAUCN040010000000005</a><br/><br/>
+    This time series represents <b>Arizona Local Unemployment Count</b>, in millions. I understood this better later on in my build. This needs to be changed to something more relevant to me, but I&apos;m using it to be &apos;generally&apos; representative of unemployment for now.
   </>;
-  const gdpNext = "Came from BLS";
-  const interestRateNext = "Need to check"
-  const cpiNext = "Somewhere"
+  const gdpNext = <>
+    Source: <br/><a href='https://www.bea.gov/' target="_blank">Bureau of Economic Analysis (BEA)</a><br/><br/>
+    Timeseries: <br/><a href='#' disabled>https://<b>apps.bea.gov</b>/api/data?<br/>
+    &method=GetData&datasetname=GDPByIndustry<br/>&Frequency=Q&Industry=ALL<br/>&TableID=1&Year=2021,2022,2023&ResultFormat=JSON</a><br/>
+    <i>This api requires you to have an api key to make requests</i><br/><br/>
+    This time series represents the <b>Overall US GDP</b> in trillions of dollars.
+  </>;
+  const interestRateNext = <>
+    Source: <br/><a href='https://home.treasury.gov/' target="_blank">U.S. Department of the Treasury</a><br/><br/>
+    Timeseries: <a href='https://api.fiscaldata.treasury.gov/services/api/fiscal_service/v2/accounting/od/avg_interest_rates?sort=-record_date&filter=security_desc:eq:United%20States%20Savings%20Inflation%20Securities' target='_blank'>
+    https://<b>api.fiscaldata.treasury.gov</b>/services/api/fiscal_service/v2/accounting<br/>
+    /od/avg_interest_rates?sort=-record_date<br/>
+    &filter=security_desc:eq:United%20States%20Savings%20Inflation%20Securities<br/>
+    &method=GetData&datasetname=GDPByIndustry<br/>&Frequency=Q&Industry=ALL<br/>&TableID=1&Year=2021,2022,2023&ResultFormat=JSON</a><br/><br/>
+    This time series represents the <b>Average US Interest Rate</b> across security types, as a percentage.
+  </>;
+  const cpiNext = <>
+    Source: <br/><a href='https://www.bls.gov/data/' target="_blank">Bureau of Labor Statistics (BLS)</a><br/><br/>
+    Timeseries: <br/><a href='https://api.bls.gov/publicAPI/v2/timeseries/data/APU0000701312' target="_blank">https://<b>api.bls.gov</b>/publicAPI/v2/timeseries/data/APU0000701312</a><br/><br/>
+    This time series represents the <b>Average Price of Rice (per lb) across the U.S.</b>, in dollars. I am using this to be &apos;generally&apos; representative of inflation.
+  </>;
   
 
   if(props.dataType == "Unemployment")
