@@ -198,7 +198,7 @@ const Page = (props) => {
         </Col>
       </Row>
       <Row>
-        <Col className="d-inline-block justify-content-center mb-3">
+        <Col className="mb-3 d-inline-block justify-content-center mb-3">
           <Card className={styles.card}>
             <h5 className="m-3">Useful Links</h5>
             <ul>
@@ -235,10 +235,8 @@ const Page = (props) => {
               </ul>
             </ul>
           </Card>
-        </Col>
-        <Col className="d-inline-block justify-content-center mb-3">
           <Card className={styles.card} style={{border:"none"}}>
-            <p className="mt-2 text-muted" >Disclaimer:
+            <p className="mt-3 text-muted" >Disclaimer:!
               This dashboard is for informational purposes only. The data is not financial advice, and users should conduct their own research before making decisions.
             </p>
           </Card>
