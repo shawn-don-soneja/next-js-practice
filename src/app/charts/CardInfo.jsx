@@ -3,10 +3,10 @@ import React from 'react';
 import Accordion from 'react-bootstrap/Accordion';
 
 const DataTypeDescription = (props) => {
-  const unemploymentDescription = "Unemployment represents the proportion of people in the labor force who are unemployed and actively looking for work.";
-  const gdpDescription = "Gross Domestic Product (GDP) is the total value of all goods and services produced within a country over a specific time period. It's a key measure of economic health, with growth in GDP indicating economic expansion and declines signaling potential recession.";
-  const interestRateDescription = "Interest rates are the percentage charged by lenders or earned by depositors for the use of money over a specific period. They are a key tool for monetary policy, influencing borrowing, spending, and investment in the economy."
-  const cpiDescription = "Consumer Price Index (CPI) measures the average change over time in the prices paid by consumers for goods and services, making it a key indicator of inflation."
+  const unemploymentDescription = <><b>Unemployment</b> represents the proportion of people in the labor force who are unemployed and actively looking for work.</>;
+  const gdpDescription = <><b>Gross Domestic Product (GDP)</b> is the total value of all goods and services produced within a country over a specific time period. It&apos;s a key measure of economic health, with growth in GDP indicating economic expansion and declines signaling potential recession.</>;
+  const interestRateDescription = <><b>Interest Rates</b> are the percentage charged by lenders or earned by depositors for the use of money over a specific period. They are a key tool for monetary policy, influencing borrowing, spending, and investment in the economy.</>;
+  const cpiDescription = <>The <b>Consumer Price Index (CPI)</b> measures the average change over time in the prices paid by consumers for goods and services, making it a key indicator of inflation.</>;
 
   if(props.dataType == "Unemployment")
     return unemploymentDescription
@@ -42,13 +42,13 @@ const WhereDidThisComeFrom = (props) => {
   const unemploymentNext = <>
     Source: <br/><a href='https://www.bls.gov/data/' target="_blank">Bureau of Labor Statistics (BLS)</a><br/><br/>
     Timeseries: <a href='https://api.bls.gov/publicAPI/v2/timeseries/data/LAUCN040010000000005' target="_blank">https://<b>api.bls.gov</b>/publicAPI/v2/timeseries/data/LAUCN040010000000005</a><br/><br/>
-    This time series represents <b>Arizona Local Unemployment Count</b> (number of employed people), for Apache Country, AZ. I understood this better later on in my build. This needs to be changed to a georgraphy more relevant to me, but I&apos;m using it to be &apos;generally&apos; representative of unemployment for now.
+    This time series represents <b>Arizona Local Unemployment Count</b> (number of employed people), for Apache Country, AZ. <br/><br/>I understoond this properly during the latter half of my build. This needs to be changed to a georgraphy more relevant to me. I&apos;m using it to be &apos;generally&apos; representative of unemployment for now.
   </>;
   const gdpNext = <>
     Source: <br/><a href='https://www.bea.gov/' target="_blank">Bureau of Economic Analysis (BEA)</a><br/><br/>
     Timeseries: <br/><a href='#' disabled>https://<b>apps.bea.gov</b>/api/data?<br/>
     &method=GetData&datasetname=GDPByIndustry<br/>&Frequency=Q&Industry=ALL<br/>&TableID=1&Year=2021,2022,2023&ResultFormat=JSON</a><br/>
-    <i>This api requires you to have an api key to make requests</i><br/><br/>
+    <br/>
     This time series represents the <b>Overall US GDP</b> in trillions of dollars.
   </>;
   const interestRateNext = <>
