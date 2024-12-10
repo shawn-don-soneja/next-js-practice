@@ -8,6 +8,7 @@ import Col from 'react-bootstrap/Col';
 import Row from 'react-bootstrap/Row';
 import { Chart } from 'react-google-charts';
 import CardInfo from './CardInfo';
+import styles from "../styles/charts.module.css";
 
 const gdp_chart_config = {
   title: "GDP ($T)",
@@ -129,23 +130,20 @@ const Page = (props) => {
 
   // Render chart after data is loaded
   return (
-    <Container>
+    <Container className='macro-economic-dashboard'>
       <Row>
         <Col>
           <h1 className="mt-4 m-3">Financial Dashboard</h1>
-          <h5 className="mt-2 m-3 text-muted" style={{lineHeight:"1.5"}}>
+          <h5 className={styles.header}>
             Here we’re tracking four key macroeconomic indicators: <b>GDP, Unemployment, Interest Rates, and Inflation</b>. 
             This project is a part of <a href='https://shawnsoneja.com' target='_blank'>shawnsoneja.com</a>. You can read more about it <a href='https://humorous-drink-54e.notion.site/Macro-Predictor-Project-Writeup-139b0558046180779d5dfa8641ed15f5' target='_blank'>here</a>.
           </h5>
-
-          <h5 className="mt-2 m-3 text-muted">
-            
-          </h5>
+          <br/>
         </Col>
       </Row>
       <Row>
-        <Col className="m-3" lg={true}>
-          <Card>
+        <Col className="mb-3 d-flex justify-content-center" lg={true}>
+          <Card className={styles.card}>
             <Chart
               chartType="LineChart"
               width="100%"
@@ -157,8 +155,8 @@ const Page = (props) => {
             <CardInfo />
           </Card>
         </Col>
-        <Col className="m-3" sm={true}>
-          <Card>
+        <Col className="mb-3 d-flex justify-content-center" sm={true}>
+          <Card className={styles.card}>
             <Chart
               chartType="LineChart"
               width="100%"
@@ -172,8 +170,8 @@ const Page = (props) => {
         </Col>
       </Row>
       <Row>
-        <Col className="m-3">
-          <Card>
+        <Col className="mb-3 d-flex justify-content-center">
+          <Card className={styles.card}>
             <Chart
               chartType="LineChart"
               width="100%"
@@ -185,8 +183,8 @@ const Page = (props) => {
             <CardInfo dataType="Interest Rate"/>
           </Card>
         </Col>
-        <Col className="m-3">
-          <Card>
+        <Col className="mb-3 d-flex justify-content-center">
+          <Card className={styles.card}>
             <Chart
               chartType="LineChart"
               width="100%"
@@ -200,8 +198,8 @@ const Page = (props) => {
         </Col>
       </Row>
       <Row>
-      <Col className="m-3">
-          <Card>
+        <Col className="d-flex justify-content-center">
+          <Card className={styles.card}>
             <h5 className="m-3">Useful Links</h5>
             <ul>
               <li><b>Understanding BLS API</b></li>
@@ -238,8 +236,13 @@ const Page = (props) => {
             </ul>
           </Card>
         </Col>
-        <p className="mt-2 m-3 text-muted" >Disclaimer:
-        This dashboard is for informational purposes only. The data is not financial advice, and users should conduct their own research before making decisions.</p>
+        <Col className="d-flex justify-content-center">
+          <Card className={styles.card} style={{border:"none"}}>
+            <p className="mt-2 text-muted" >Disclaimer:
+              This dashboard is for informational purposes only. The data is not financial advice, and users should conduct their own research before making decisions.
+            </p>
+          </Card>
+        </Col>
       </Row>
     </Container>
   );
