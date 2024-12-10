@@ -12,16 +12,12 @@
   .card {
     max-width: 502px;
   }
-  .header {
-    font-size: 0.9rem !important;
-    color: green;
-  }
 }
 
-.header{
+.header {
   margin-top: 0.5rem;
   color: #6c757d;
   margin: 1rem;
-  font-size: 1.1rem;
-  line-height: 1.5 !important;
+  font-size: clamp(1rem, 2.5vw, 1.5rem); /* Adjust dynamically */
+  line-height: 1.5;
 }

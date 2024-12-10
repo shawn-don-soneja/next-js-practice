@@ -104,10 +104,10 @@ const Page = (props) => {
       setInterestRateTrend(data.interestRateTrend);
       setLoading(false);
   
-      console.log('Response received:', JSON.stringify(data));
+      //console.log('Response received:', JSON.stringify(data));
   
       // Try to parse the response as JSON
-      console.log('Data received:', data);
+      //console.log('Data received:', data);
   
       return data;
   
@@ -198,7 +198,7 @@ const Page = (props) => {
         </Col>
       </Row>
       <Row>
-        <Col className="d-flex justify-content-center">
+        <Col className="d-flex justify-content-center mb-3">
           <Card className={styles.card}>
             <h5 className="m-3">Useful Links</h5>
             <ul>
@@ -236,7 +236,7 @@ const Page = (props) => {
             </ul>
           </Card>
         </Col>
-        <Col className="d-flex justify-content-center">
+        <Col className="d-flex justify-content-center mb-3">
           <Card className={styles.card} style={{border:"none"}}>
             <p className="mt-2 text-muted" >Disclaimer:
               This dashboard is for informational purposes only. The data is not financial advice, and users should conduct their own research before making decisions.
