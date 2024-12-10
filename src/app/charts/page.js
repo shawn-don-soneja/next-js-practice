@@ -142,7 +142,7 @@ const Page = (props) => {
         </Col>
       </Row>
       <Row>
-        <Col className="mb-3 d-flex justify-content-center" lg={true}>
+        <Col className="mb-3 d-inline-block justify-content-center" lg={true}>
           <Card className={styles.card}>
             <Chart
               chartType="LineChart"
@@ -155,7 +155,7 @@ const Page = (props) => {
             <CardInfo />
           </Card>
         </Col>
-        <Col className="mb-3 d-flex justify-content-center" sm={true}>
+        <Col className="mb-3 d-inline-block justify-content-center" sm={true}>
           <Card className={styles.card}>
             <Chart
               chartType="LineChart"
@@ -170,7 +170,7 @@ const Page = (props) => {
         </Col>
       </Row>
       <Row>
-        <Col className="mb-3 d-flex justify-content-center">
+        <Col className="mb-3 d-inline-block justify-content-center">
           <Card className={styles.card}>
             <Chart
               chartType="LineChart"
@@ -183,7 +183,7 @@ const Page = (props) => {
             <CardInfo dataType="Interest Rate"/>
           </Card>
         </Col>
-        <Col className="mb-3 d-flex justify-content-center">
+        <Col className="mb-3 d-inline-block justify-content-center">
           <Card className={styles.card}>
             <Chart
               chartType="LineChart"
@@ -198,7 +198,7 @@ const Page = (props) => {
         </Col>
       </Row>
       <Row>
-        <Col className="d-flex justify-content-center mb-3">
+        <Col className="d-inline-block justify-content-center mb-3">
           <Card className={styles.card}>
             <h5 className="m-3">Useful Links</h5>
             <ul>
@@ -236,7 +236,7 @@ const Page = (props) => {
             </ul>
           </Card>
         </Col>
-        <Col className="d-flex justify-content-center mb-3">
+        <Col className="d-inline-block justify-content-center mb-3">
           <Card className={styles.card} style={{border:"none"}}>
             <p className="mt-2 text-muted" >Disclaimer:
               This dashboard is for informational purposes only. The data is not financial advice, and users should conduct their own research before making decisions.
