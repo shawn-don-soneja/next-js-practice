@@ -135,7 +135,7 @@ const Page = (props) => {
           <h1 className="mt-4 m-3">Financial Dashboard</h1>
           <h5 className="mt-2 m-3 text-muted" style={{lineHeight:"1.5"}}>
             Here we’re tracking four key macroeconomic indicators: <b>GDP, Unemployment, Interest Rates, and Inflation</b>. 
-            This project is a part of <a href='shawnsoneja.com' target='_blank'>shawnsoneja.com</a>. You can read more about it <a href='https://humorous-drink-54e.notion.site/Macro-Predictor-Project-Writeup-139b0558046180779d5dfa8641ed15f5' target='_blank'>here</a>.
+            This project is a part of <a href='https://shawnsoneja.com' target='_blank'>shawnsoneja.com</a>. You can read more about it <a href='https://humorous-drink-54e.notion.site/Macro-Predictor-Project-Writeup-139b0558046180779d5dfa8641ed15f5' target='_blank'>here</a>.
           </h5>
 
           <h5 className="mt-2 m-3 text-muted">
