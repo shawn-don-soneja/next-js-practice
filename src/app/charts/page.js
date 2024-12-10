@@ -238,6 +238,8 @@ const Page = (props) => {
             </ul>
           </Card>
         </Col>
+        <p className="mt-2 m-3 text-muted" >Disclaimer:
+        This dashboard is for informational purposes only. The data is not financial advice, and users should conduct their own research before making decisions.</p>
       </Row>
     </Container>
   );
