@@ -236,7 +236,7 @@ const Page = (props) => {
             </ul>
           </Card>
           <Card className={styles.card} style={{border:"none"}}>
-            <p className="mt-3 text-muted" >Disclaimer:!
+            <p className="mt-3 text-muted" >Disclaimer:
               This dashboard is for informational purposes only. The data is not financial advice, and users should conduct their own research before making decisions.
             </p>
           </Card>
