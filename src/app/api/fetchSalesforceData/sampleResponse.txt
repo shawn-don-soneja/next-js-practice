@@ -1,0 +1,435 @@
+    {
+    "totalSize": 218,
+    "done": true,
+    "records": [
+        {
+        "attributes": {
+            "type": "Financial_Data__c",
+            "url": "/services/data/v58.0/sobjects/Financial_Data__c/a0V5e00000I4BF0EAN"
+        },
+        "Name": "a0V5e00000I4BF0",
+        "Id": "a0V5e00000I4BF0EAN",
+        "Type__c": "CPI",
+        "Value__c": 1.078,
+        "Date__c": "2024-09-01"
+        },
+        {
+        "attributes": {
+            "type": "Financial_Data__c",
+            "url": "/services/data/v58.0/sobjects/Financial_Data__c/a0V5e00000I4AIIEA3"
+        },
+        "Name": "a0V5e00000I4AII",
+        "Id": "a0V5e00000I4AIIEA3",
+        "Type__c": "CPI",
+        "Value__c": 1.085,
+        "Date__c": "2024-08-01"
+        },
+        {
+        "attributes": {
+            "type": "Financial_Data__c",
+            "url": "/services/data/v58.0/sobjects/Financial_Data__c/a0V5e00000I49u2EAB"
+        },
+        "Name": "a0V5e00000I49u2",
+        "Id": "a0V5e00000I49u2EAB",
+        "Type__c": "CPI",
+        "Value__c": 1.039,
+        "Date__c": "2024-07-01"
+        },
+        {
+        "attributes": {
+            "type": "Financial_Data__c",
+            "url": "/services/data/v58.0/sobjects/Financial_Data__c/a0V5e00000I49Z4EAJ"
+        },
+        "Name": "a0V5e00000I49Z4",
+        "Id": "a0V5e00000I49Z4EAJ",
+        "Type__c": "CPI",
+        "Value__c": 1.018,
+        "Date__c": "2024-06-01"
+        },
+        {
+        "attributes": {
+            "type": "Financial_Data__c",
+            "url": "/services/data/v58.0/sobjects/Financial_Data__c/a0V5e00000I49MDEAZ"
+        },
+        "Name": "a0V5e00000I49MD",
+        "Id": "a0V5e00000I49MDEAZ",
+        "Type__c": "CPI",
+        "Value__c": 1.002,
+        "Date__c": "2024-05-01"
+        },
+        {
+        "attributes": {
+            "type": "Financial_Data__c",
+            "url": "/services/data/v58.0/sobjects/Financial_Data__c/a0V5e00000I49MEEAZ"
+        },
+        "Name": "a0V5e00000I49ME",
+        "Id": "a0V5e00000I49MEEAZ",
+        "Type__c": "CPI",
+        "Value__c": 1.025,
+        "Date__c": "2024-04-01"
+        },
+        {
+        "attributes": {
+            "type": "Financial_Data__c",
+            "url": "/services/data/v58.0/sobjects/Financial_Data__c/a0V5e00000ML0PeEAL"
+        },
+        "Name": "a0V5e00000ML0Pe",
+        "Id": "a0V5e00000ML0PeEAL",
+        "Type__c": "CPI",
+        "Value__c": 1.014,
+        "Date__c": "2024-03-01"
+        },
+        {
+        "attributes": {
+            "type": "Financial_Data__c",
+            "url": "/services/data/v58.0/sobjects/Financial_Data__c/a0V5e00000LsDcXEAV"
+        },
+        "Name": "a0V5e00000LsDcX",
+        "Id": "a0V5e00000LsDcXEAV",
+        "Type__c": "CPI",
+        "Value__c": 1.001,
+        "Date__c": "2024-02-01"
+        },
+        {
+        "attributes": {
+            "type": "Financial_Data__c",
+            "url": "/services/data/v58.0/sobjects/Financial_Data__c/a0V5e00000LsDcYEAV"
+        },
+        "Name": "a0V5e00000LsDcY",
+        "Id": "a0V5e00000LsDcYEAV",
+        "Type__c": "CPI",
+        "Value__c": 1,
+        "Date__c": "2024-01-01"
+        },
+        {
+        "attributes": {
+            "type": "Financial_Data__c",
+            "url": "/services/data/v58.0/sobjects/Financial_Data__c/a0V5e00000LsDcZEAV"
+        },
+        "Name": "a0V5e00000LsDcZ",
+        "Id": "a0V5e00000LsDcZEAV",
+        "Type__c": "CPI",
+        "Value__c": 0.99,
+        "Date__c": "2023-12-01"
+        },
+        {
+        "attributes": {
+            "type": "Financial_Data__c",
+            "url": "/services/data/v58.0/sobjects/Financial_Data__c/a0V5e00000LsDcaEAF"
+        },
+        "Name": "a0V5e00000LsDca",
+        "Id": "a0V5e00000LsDcaEAF",
+        "Type__c": "CPI",
+        "Value__c": 0.992,
+        "Date__c": "2023-11-01"
+        },
+        {
+        "attributes": {
+            "type": "Financial_Data__c",
+            "url": "/services/data/v58.0/sobjects/Financial_Data__c/a0V5e00000LsDcbEAF"
+        },
+        "Name": "a0V5e00000LsDcb",
+        "Id": "a0V5e00000LsDcbEAF",
+        "Type__c": "CPI",
+        "Value__c": 0.96,
+        "Date__c": "2023-10-01"
+        },
+        {
+        "attributes": {
+            "type": "Financial_Data__c",
+            "url": "/services/data/v58.0/sobjects/Financial_Data__c/a0V5e00000LsDccEAF"
+        },
+        "Name": "a0V5e00000LsDcc",
+        "Id": "a0V5e00000LsDccEAF",
+        "Type__c": "CPI",
+        "Value__c": 0.981,
+        "Date__c": "2023-09-01"
+        },
+        {
+        "attributes": {
+            "type": "Financial_Data__c",
+            "url": "/services/data/v58.0/sobjects/Financial_Data__c/a0V5e00000LsDcdEAF"
+        },
+        "Name": "a0V5e00000LsDcd",
+        "Id": "a0V5e00000LsDcdEAF",
+        "Type__c": "CPI",
+        "Value__c": 0.997,
+        "Date__c": "2023-08-01"
+        },
+        {
+        "attributes": {
+            "type": "Financial_Data__c",
+            "url": "/services/data/v58.0/sobjects/Financial_Data__c/a0V5e00000LsDceEAF"
+        },
+        "Name": "a0V5e00000LsDce",
+        "Id": "a0V5e00000LsDceEAF",
+        "Type__c": "CPI",
+        "Value__c": 1.006,
+        "Date__c": "2023-07-01"
+        },
+        {
+        "attributes": {
+            "type": "Financial_Data__c",
+            "url": "/services/data/v58.0/sobjects/Financial_Data__c/a0V5e00000LsDcfEAF"
+        },
+        "Name": "a0V5e00000LsDcf",
+        "Id": "a0V5e00000LsDcfEAF",
+        "Type__c": "CPI",
+        "Value__c": 1.003,
+        "Date__c": "2023-06-01"
+        },
+        {
+        "attributes": {
+            "type": "Financial_Data__c",
+            "url": "/services/data/v58.0/sobjects/Financial_Data__c/a0V5e00000LsDcgEAF"
+        },
+        "Name": "a0V5e00000LsDcg",
+        "Id": "a0V5e00000LsDcgEAF",
+        "Type__c": "CPI",
+        "Value__c": 0.997,
+        "Date__c": "2023-05-01"
+        },
+        {
+        "attributes": {
+            "type": "Financial_Data__c",
+            "url": "/services/data/v58.0/sobjects/Financial_Data__c/a0V5e00000LsDchEAF"
+        },
+        "Name": "a0V5e00000LsDch",
+        "Id": "a0V5e00000LsDchEAF",
+        "Type__c": "CPI",
+        "Value__c": 0.98,
+        "Date__c": "2023-04-01"
+        },
+        {
+        "attributes": {
+            "type": "Financial_Data__c",
+            "url": "/services/data/v58.0/sobjects/Financial_Data__c/a0V5e00000HhRHhEAN"
+        },
+        "Name": "a0V5e00000HhRHh",
+        "Id": "a0V5e00000HhRHhEAN",
+        "Type__c": "CPI",
+        "Value__c": 0.982,
+        "Date__c": "2023-03-01"
+        },
+        {
+        "attributes": {
+            "type": "Financial_Data__c",
+            "url": "/services/data/v58.0/sobjects/Financial_Data__c/a0V5e00000HhRHiEAN"
+        },
+        "Name": "a0V5e00000HhRHi",
+        "Id": "a0V5e00000HhRHiEAN",
+        "Type__c": "CPI",
+        "Value__c": 0.959,
+        "Date__c": "2023-02-01"
+        },
+        {
+        "attributes": {
+            "type": "Financial_Data__c",
+            "url": "/services/data/v58.0/sobjects/Financial_Data__c/a0V5e00000HhRHjEAN"
+        },
+        "Name": "a0V5e00000HhRHj",
+        "Id": "a0V5e00000HhRHjEAN",
+        "Type__c": "CPI",
+        "Value__c": 0.97,
+        "Date__c": "2023-01-01"
+        },
+        {
+        "attributes": {
+            "type": "Financial_Data__c",
+            "url": "/services/data/v58.0/sobjects/Financial_Data__c/a0V5e00000HhRHkEAN"
+        },
+        "Name": "a0V5e00000HhRHk",
+        "Id": "a0V5e00000HhRHkEAN",
+        "Type__c": "CPI",
+        "Value__c": 0.971,
+        "Date__c": "2022-12-01"
+        },
+        {
+        "attributes": {
+            "type": "Financial_Data__c",
+            "url": "/services/data/v58.0/sobjects/Financial_Data__c/a0V5e00000HhRHlEAN"
+        },
+        "Name": "a0V5e00000HhRHl",
+        "Id": "a0V5e00000HhRHlEAN",
+        "Type__c": "CPI",
+        "Value__c": 0.963,
+        "Date__c": "2022-11-01"
+        },
+        {
+        "attributes": {
+            "type": "Financial_Data__c",
+            "url": "/services/data/v58.0/sobjects/Financial_Data__c/a0V5e00000HhRHmEAN"
+        },
+        "Name": "a0V5e00000HhRHm",
+        "Id": "a0V5e00000HhRHmEAN",
+        "Type__c": "CPI",
+        "Value__c": 0.963,
+        "Date__c": "2022-10-01"
+        },
+        {
+        "attributes": {
+            "type": "Financial_Data__c",
+            "url": "/services/data/v58.0/sobjects/Financial_Data__c/a0V5e00000HhRHnEAN"
+        },
+        "Name": "a0V5e00000HhRHn",
+        "Id": "a0V5e00000HhRHnEAN",
+        "Type__c": "CPI",
+        "Value__c": 0.939,
+        "Date__c": "2022-09-01"
+        },
+        {
+        "attributes": {
+            "type": "Financial_Data__c",
+            "url": "/services/data/v58.0/sobjects/Financial_Data__c/a0V5e00000HhRHoEAN"
+        },
+        "Name": "a0V5e00000HhRHo",
+        "Id": "a0V5e00000HhRHoEAN",
+        "Type__c": "CPI",
+        "Value__c": 0.925,
+        "Date__c": "2022-08-01"
+        },
+        {
+        "attributes": {
+            "type": "Financial_Data__c",
+            "url": "/services/data/v58.0/sobjects/Financial_Data__c/a0V5e00000HhRHpEAN"
+        },
+        "Name": "a0V5e00000HhRHp",
+        "Id": "a0V5e00000HhRHpEAN",
+        "Type__c": "CPI",
+        "Value__c": 0.929,
+        "Date__c": "2022-07-01"
+        },
+        {
+        "attributes": {
+            "type": "Financial_Data__c",
+            "url": "/services/data/v58.0/sobjects/Financial_Data__c/a0V5e00000HhRHqEAN"
+        },
+        "Name": "a0V5e00000HhRHq",
+        "Id": "a0V5e00000HhRHqEAN",
+        "Type__c": "CPI",
+        "Value__c": 0.924,
+        "Date__c": "2022-06-01"
+        },
+        {
+        "attributes": {
+            "type": "Financial_Data__c",
+            "url": "/services/data/v58.0/sobjects/Financial_Data__c/a0V5e00000HhRHrEAN"
+        },
+        "Name": "a0V5e00000HhRHr",
+        "Id": "a0V5e00000HhRHrEAN",
+        "Type__c": "CPI",
+        "Value__c": 0.909,
+        "Date__c": "2022-05-01"
+        },
+        {
+        "attributes": {
+            "type": "Financial_Data__c",
+            "url": "/services/data/v58.0/sobjects/Financial_Data__c/a0V5e00000HhRHsEAN"
+        },
+        "Name": "a0V5e00000HhRHs",
+        "Id": "a0V5e00000HhRHsEAN",
+        "Type__c": "CPI",
+        "Value__c": 0.9,
+        "Date__c": "2022-04-01"
+        },
+        {
+        "attributes": {
+            "type": "Financial_Data__c",
+            "url": "/services/data/v58.0/sobjects/Financial_Data__c/a0V5e00000HhRHtEAN"
+        },
+        "Name": "a0V5e00000HhRHt",
+        "Id": "a0V5e00000HhRHtEAN",
+        "Type__c": "CPI",
+        "Value__c": 0.871,
+        "Date__c": "2022-03-01"
+        },
+        {
+        "attributes": {
+            "type": "Financial_Data__c",
+            "url": "/services/data/v58.0/sobjects/Financial_Data__c/a0V5e00000HhRHuEAN"
+        },
+        "Name": "a0V5e00000HhRHu",
+        "Id": "a0V5e00000HhRHuEAN",
+        "Type__c": "CPI",
+        "Value__c": 0.83,
+        "Date__c": "2022-02-01"
+        },
+        {
+        "attributes": {
+            "type": "Financial_Data__c",
+            "url": "/services/data/v58.0/sobjects/Financial_Data__c/a0V5e00000HhRHvEAN"
+        },
+        "Name": "a0V5e00000HhRHv",
+        "Id": "a0V5e00000HhRHvEAN",
+        "Type__c": "CPI",
+        "Value__c": 0.832,
+        "Date__c": "2022-01-01"
+        },
+        {
+        "attributes": {
+            "type": "Financial_Data__c",
+            "url": "/services/data/v58.0/sobjects/Financial_Data__c/a0V5e00000HhRHwEAN"
+        },
+        "Name": "a0V5e00000HhRHw",
+        "Id": "a0V5e00000HhRHwEAN",
+        "Type__c": "CPI",
+        "Value__c": 0.82,
+        "Date__c": "2021-12-01"
+        },
+        {
+        "attributes": {
+            "type": "Financial_Data__c",
+            "url": "/services/data/v58.0/sobjects/Financial_Data__c/a0V5e00000HhRHxEAN"
+        },
+        "Name": "a0V5e00000HhRHx",
+        "Id": "a0V5e00000HhRHxEAN",
+        "Type__c": "CPI",
+        "Value__c": 0.844,
+        "Date__c": "2021-11-01"
+        },
+        {
+        "attributes": {
+            "type": "Financial_Data__c",
+            "url": "/services/data/v58.0/sobjects/Financial_Data__c/a0V5e00000HhRIAEA3"
+        },
+        "Name": "a0V5e00000HhRIA",
+        "Id": "a0V5e00000HhRIAEA3",
+        "Type__c": "Unemployment",
+        "Value__c": 16945,
+        "Date__c": "2022-12-01"
+        },
+        {
+        "attributes": {
+            "type": "Financial_Data__c",
+            "url": "/services/data/v58.0/sobjects/Financial_Data__c/a0V5e00000HhRIBEA3"
+        },
+        "Name": "a0V5e00000HhRIB",
+        "Id": "a0V5e00000HhRIBEA3",
+        "Type__c": "Unemployment",
+        "Value__c": 16890,
+        "Date__c": "2022-11-01"
+        },
+        {
+        "attributes": {
+            "type": "Financial_Data__c",
+            "url": "/services/data/v58.0/sobjects/Financial_Data__c/a0V5e00000HhRICEA3"
+        },
+        "Name": "a0V5e00000HhRIC",
+        "Id": "a0V5e00000HhRICEA3",
+        "Type__c": "Unemployment",
+        "Value__c": 16902,
+        "Date__c": "2022-10-01"
+        },
+        {
+        "attributes": {
+            "type": "Financial_Data__c",
+            "url": "/services/data/v58.0/sobjects/Financial_Data__c/a0V5e00000Djc4eEAB"
+        },
+        "Name": "a0V5e00000Djc4e",
+        "Id": "a0V5e00000Djc4eEAB",
+        "Type__c": "GDP",
+        "Value__c": 22313.9,
+        "Date__c": "2021-03-01"
+        }
+    ]
+    }
