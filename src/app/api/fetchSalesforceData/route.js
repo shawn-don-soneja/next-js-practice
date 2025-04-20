@@ -3,7 +3,12 @@ import { NextResponse } from 'next/server';
 
 export async function GET() {
     console.log('API route: Received request'); // Start of API route
+
+    //begin api
     try {
+        //first, try and auth to sf
+        //second, grab active data from sf
+        //third, grab trend data from sf
         const apiUrl = process.env.SF_AUTH_URL;
         const dataUrl = process.env.SF_DATA_URL;
         const trendDataUrl = process.env.SF_TREND_DATA_URL;
@@ -75,7 +80,7 @@ export async function GET() {
                         }
                     }
 
-                    //i am flipping these null values, such that the prediction and actual data shows as
+                    //i am flipping these null values, such that the prediction and actual data show as
                     //separate lines on the final client-side chart
                     formattedData_CPI.push([record.Date__c, record.Value__c, null]);
                 }else{
