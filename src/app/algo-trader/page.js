@@ -1,13 +1,14 @@
 'use client';  // Client-side rendering
 
 import React, { useEffect, useState } from 'react';
-import styles from "../styles/charts.module.css";
-import Col from 'react-bootstrap/Col';
-import Row from 'react-bootstrap/Row';
-import Container from 'react-bootstrap/Container';
+import Badge from 'react-bootstrap/Badge';
 import Card from 'react-bootstrap/Card';
 import { Chart } from 'react-google-charts';
-import Badge from 'react-bootstrap/Badge'
+import Container from 'react-bootstrap/Container';
+import Col from 'react-bootstrap/Col';
+import Row from 'react-bootstrap/Row';
+import Table from 'react-bootstrap/Table';
+import styles from "../styles/charts.module.css";
 
 const Page = (props) => {
   
@@ -23,12 +24,17 @@ const Page = (props) => {
   }, []);
 
   // Display a loading message while fetching data
-  return <h2 className="m-2">Algo trading coming!</h2>;
-
-  // Render chart after data is loaded
   return (
-    <>hello</>
+    <Container>
+      <h2 className="m-2">Algo trading coming!</h2>
+      <Card>
+        Process Logs
+        <Table></Table>
+      </Card>
+      <Card>Alpaca Portfolio Performance</Card>
+    </Container>
   );
+ 
 };
 
 export default Page;
