@@ -19,6 +19,7 @@
     "react-google-charts": "^5.2.1"
   },
   "devDependencies": {
+    "@types/node": "22.15.18",
     "eslint": "^8",
     "eslint-config-next": "15.0.3"
   }
