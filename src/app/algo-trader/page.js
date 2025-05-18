@@ -27,7 +27,39 @@ const Page = (props) => {
       <h2 className="m-2">Algo trading coming!</h2>
       <Card>
         Process Logs
-        <Table></Table>
+        <Table striped bordered hover>
+      <thead>
+        <tr>
+          <th>#</th>
+          <th>Log Id</th>
+          <th>Created Date</th>
+          <th>Status</th>
+          <th>Description</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td>1</td>
+          <td>Mark</td>
+          <td>Otto</td>
+          <td>@mdo</td>
+          <td>ssa</td>
+        </tr>
+        <tr>
+          <td>2</td>
+          <td>Jacob</td>
+          <td>Thornton</td>
+          <td>@fat</td>
+          <td>ssa</td>
+        </tr>
+        <tr>
+          <td>3</td>
+          <td colSpan={2}>Larry the Bird</td>
+          <td>@twitter</td>
+          <td>ssa</td>
+        </tr>
+      </tbody>
+    </Table>
       </Card>
       <Card>Alpaca Portfolio Performance</Card>
     </Container>
@@ -43,8 +75,8 @@ export default async function MyPage() {
   
   return (
     <div>
-      <h1>Welcome, {session.user?.name}</h1>
-      <pre>hello</pre>
+        <pre>Successfully Authenticated: {session.user?.name}</pre>
+      <Page/>
     </div>
   );
 }
