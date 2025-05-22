@@ -13,13 +13,16 @@ import { redirect } from "next/navigation";
 import { getServerSession } from "next-auth";
 
 
+async function fetchRecords() {
+  const baseUrl = process.env.NEXT_PUBLIC_BASE_URL || 'http://localhost:3000';
+  const res = await fetch(`${baseUrl}/api/fetchAwsData`, { next: { revalidate: 0 } });
+  if (!res.ok) throw new Error("Failed to fetch records");
+  return res.json();
+}
 
 const Page = async (props) => {
   
-  // This function fetches data from the server
-  const response = await fetch(`${process.env.NEXT_PUBLIC_SITE_URL || 'http://localhost:3000'}/api/fetchAwsData`)
-
-  const logs = response.ok ? await response.json() : [];
+  const records = await fetchRecords();
 
   // Display a loading message while fetching data
   return (
@@ -28,38 +31,33 @@ const Page = async (props) => {
       <Card>
         Process Logs
         <Table striped bordered hover>
-      <thead>
-        <tr>
-          <th>#</th>
-          <th>Log Id</th>
-          <th>Created Date</th>
-          <th>Status</th>
-          <th>Description</th>
-        </tr>
-      </thead>
-      <tbody>
-        <tr>
-          <td>1</td>
-          <td>Mark</td>
-          <td>Otto</td>
-          <td>@mdo</td>
-          <td>ssa</td>
-        </tr>
-        <tr>
-          <td>2</td>
-          <td>Jacob</td>
-          <td>Thornton</td>
-          <td>@fat</td>
-          <td>ssa</td>
-        </tr>
-        <tr>
-          <td>3</td>
-          <td colSpan={2}>Larry the Bird</td>
-          <td>@twitter</td>
-          <td>ssa</td>
-        </tr>
-      </tbody>
-    </Table>
+          <thead>
+            <tr>
+              <th>#</th>
+              <th>Log Id</th>
+              <th>Created Date</th>
+              <th>Status</th>
+              <th>Description</th>
+            </tr>
+          </thead>
+          <tbody>
+            {records.length === 0 ? (
+              <tr>
+                <td colSpan={5}>No records found</td>
+              </tr>
+            ) : (
+              records.map((record, i) => (
+                <tr key={record.Id || i}>
+                  <td>{i + 1}</td>
+                  <td>{record.Id || "N/A"}</td>
+                  <td>{record.Purchase_Date || "N/A"}</td>
+                  <td>{record.Status || "N/A"}</td>
+                  <td>{record.Description || "-"}</td>
+                </tr>
+              ))
+            )}
+          </tbody>
+        </Table>
       </Card>
       <Card>Alpaca Portfolio Performance</Card>
     </Container>
