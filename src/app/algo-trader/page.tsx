@@ -50,7 +50,7 @@ const Page = async (props) => {
                 <tr key={record.Id || i}>
                   <td>{i + 1}</td>
                   <td>{record.Id || "N/A"}</td>
-                  <td>{record.Purchase_Date || "N/A"}</td>
+                  <td>{record.CreatedDate || "N/A"}</td>
                   <td>{record.Status || "N/A"}</td>
                   <td>{record.Description || "-"}</td>
                 </tr>
