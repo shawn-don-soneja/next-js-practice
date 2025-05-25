@@ -6,7 +6,7 @@ const allowedUsers = (process.env.ALLOWED_USERS ?? "")
   .map((u) => u.split(":"))
   .filter(([user, pass]) => user && pass);
 
-export const authOptions = {
+const authOptions = {
   providers: [
     CredentialsProvider({
       name: "Credentials",
