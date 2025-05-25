@@ -8,7 +8,7 @@ import Row from 'react-bootstrap/Row';
 import Table from 'react-bootstrap/Table';
 import styles from "../styles/charts.module.css";
 
-import { authOptions } from "../api/auth/[...nextauth]/route";
+import { authOptions } from "../api/auth/auth.config";
 import { redirect } from "next/navigation";
 import { getServerSession } from "next-auth";
 
