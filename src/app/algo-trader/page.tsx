@@ -7,29 +7,56 @@ import Col from 'react-bootstrap/Col';
 import Row from 'react-bootstrap/Row';
 import Table from 'react-bootstrap/Table';
 import styles from "../styles/charts.module.css";
+import { headers } from 'next/headers';
 
 import { authOptions } from "../api/auth/auth.config";
 import { redirect } from "next/navigation";
 import { getServerSession } from "next-auth";
 
+function getProtocol() {
+  return process.env.NODE_ENV === 'development' ? 'http' : 'https';
+}
 
 async function fetchRecords() {
-  const baseUrl = process.env.NEXT_PUBLIC_BASE_URL || 'http://localhost:3000';
-  const res = await fetch(`${baseUrl}/api/fetchAwsData`, { next: { revalidate: 0 } });
+  // Ensure we have a proper URL by using URL constructor
+  const baseUrl = process.env.VERCEL_URL 
+    ? `https://${process.env.VERCEL_URL}`
+    : 'http://localhost:3000';
+    
+  const url = new URL('/api/fetchAwsData', baseUrl);
+  
+  const res = await fetch(url, { 
+    next: { revalidate: 0 },
+    headers: {
+      'Content-Type': 'application/json',
+    },
+  });
   if (!res.ok) throw new Error("Failed to fetch records");
   return res.json();
 }
 
 const Page = async (props) => {
-  
-  const records = await fetchRecords();
+  let records = [];
+  try {
+    records = await fetchRecords();
+  } catch (error) {
+    console.error('Error fetching records:', error);
+    return (
+      <Container>
+        <Card>
+          <h3>Error Loading Data</h3>
+          <p>Failed to fetch records. Please try again later.</p>
+          <pre>{error.message}</pre>
+        </Card>
+      </Container>
+    );
+  }
 
-  // Display a loading message while fetching data
+  // Display the data when successfully loaded
   return (
     <Container>
-      <h2 className="m-2">Algo trading coming!</h2>
       <Card>
-        Process Logs
+        <h3>Automated Process Logs</h3>
         <Table striped bordered hover>
           <thead>
             <tr>
@@ -59,6 +86,7 @@ const Page = async (props) => {
           </tbody>
         </Table>
       </Card>
+      <br/>
       <Card>Alpaca Portfolio Performance</Card>
     </Container>
   );
