@@ -8,6 +8,7 @@ const allowedUsers = (process.env.ALLOWED_USERS ?? "")
   .filter(([user, pass]) => user && pass);
 
 export const authOptions: NextAuthOptions = {
+  secret: process.env.NEXTAUTH_SECRET,
   providers: [
     CredentialsProvider({
       name: "Credentials",
