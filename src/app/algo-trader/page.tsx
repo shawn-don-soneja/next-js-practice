@@ -18,14 +18,7 @@ function getProtocol() {
 }
 
 async function fetchRecords() {
-  // Ensure we have a proper URL by using URL constructor
-  const baseUrl = process.env.VERCEL_URL 
-    ? `https://${process.env.VERCEL_URL}`
-    : 'http://localhost:3000';
-    
-  const url = new URL('/api/fetchAwsData', baseUrl);
-  
-  const res = await fetch(url, { 
+  const res = await fetch(`${process.env.NEXT_PUBLIC_BASE_URL || 'http://localhost:3000'}/api/fetchAwsData`, { 
     next: { revalidate: 0 },
     headers: {
       'Content-Type': 'application/json',
