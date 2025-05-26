@@ -32,7 +32,10 @@ async function fetchRecords() {
     },
   });
 
-  if (!res.ok) throw new Error("Failed to fetch records");
+  if (!res.ok) {
+    const errorText = await res.text(); // Attempt to get error details from the response
+    throw new Error(`Failed to fetch records: ${res.status} ${res.statusText} - ${errorText}`);
+  }
   return res.json();
 }
 
