@@ -25,6 +25,8 @@ async function fetchRecords() {
   console.log('host: ' + host);
   const protocol = process.env.NODE_ENV === 'development' ? 'http' : 'https';
   console.log('process.env.NODE_ENV: ' + process.env.NODE_ENV);
+  var myURL = `${protocol}://${host}/api/fetchAwsData`;
+  console.log('myURL: ' + myURL);
   const res = await fetch(`${protocol}://${host}/api/fetchAwsData`, {
     next: { revalidate: 0 },
     headers: {
