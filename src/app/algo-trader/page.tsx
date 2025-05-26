@@ -19,20 +19,14 @@ function getProtocol() {
 }
 
 async function fetchRecords() {
-  const headersList = await headers();
-  const host = headersList.get('host');
-  const protocol = process.env.NODE_ENV === 'development' ? 'http' : 'https';
-
-  const res = await fetch(`${protocol}://${host}/api/fetchAwsData`, {
+  const res = await fetch('/api/fetchAwsData', { 
     next: { revalidate: 0 },
-    headers: {
-      'Content-Type': 'application/json',
-    },
+    headers: { 'Content-Type': 'application/json' },
   });
-
-  if (!res.ok) throw new Error("Failed to fetch records");
+  if (!res.ok) throw new Error('Failed to fetch records');
   return res.json();
 }
+
 
 const Page = async (props) => {
   let records = [];
