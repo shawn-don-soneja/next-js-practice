@@ -8,6 +8,7 @@ import Row from 'react-bootstrap/Row';
 import Table from 'react-bootstrap/Table';
 import styles from "../styles/charts.module.css";
 import { headers } from 'next/headers';
+import EquityChart from './EquityChart';
 
 import { authOptions } from "../api/auth/auth.config";
 import { redirect } from "next/navigation";
@@ -46,6 +47,7 @@ const Page = async (props) => {
           <p>Failed to fetch records. Please try again later.</p>
           <pre>{error.message}</pre>
         </Card>
+        {/* <EquityChart/> */}
       </Container>
     );
   }
