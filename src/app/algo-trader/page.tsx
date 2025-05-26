@@ -19,10 +19,11 @@ function getProtocol() {
 }
 
 async function fetchRecords() {
+  console.log('Fetching records from AWS...');
   const headersList = await headers();
   const host = headersList.get('host');
   const protocol = process.env.NODE_ENV === 'development' ? 'http' : 'https';
-
+  console.log('process.env.NODE_ENV: ' + process.env.NODE_ENV);
   const res = await fetch(`${protocol}://${host}/api/fetchAwsData`, {
     next: { revalidate: 0 },
     headers: {
