@@ -1,4 +1,4 @@
-import { getServerSession } from "next-auth/next";
+import { getToken } from "next-auth/jwt"; // ✅ changed
 import { authOptions } from "../auth/auth.config";
 
 import { DynamoDBClient } from "@aws-sdk/client-dynamodb";
@@ -8,7 +8,7 @@ const ddbClient = new DynamoDBClient({ region: process.env.AWS_DEFAULT_REGION })
 const ddb = DynamoDBDocumentClient.from(ddbClient);
 
 export async function GET(request) {
-  const session = await getServerSession(request, authOptions);
+  const session = await getToken({ req: request, secret: process.env.NEXTAUTH_SECRET }); // ✅ changed
 
   console.log("Session:", session);
 

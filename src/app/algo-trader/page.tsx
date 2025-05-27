@@ -23,14 +23,16 @@ async function fetchRecords() {
   const headersList = await headers();
   const host = headersList.get('host');
   console.log('host: ' + host);
-  const protocol = process.env.NODE_ENV === 'development' ? 'http' : 'https';
-  console.log('process.env.NODE_ENV: ' + process.env.NODE_ENV);
-  var myURL = `${protocol}://${host}/api/fetchAwsData`;
+  const protocol = getProtocol();
+  const myURL = `${protocol}://${host}/api/fetchAwsData`;
   console.log('myURL: ' + myURL);
-  const res = await fetch(`${protocol}://${host}/api/fetchAwsData`, {
+  const cookie = headersList.get('cookie');
+
+  const res = await fetch(myURL, {
     next: { revalidate: 0 },
     headers: {
       'Content-Type': 'application/json',
+      cookie: cookie || '', // ✅ Fix
     },
   });
 
@@ -93,23 +95,20 @@ const Page = async (props) => {
           </tbody>
         </Table>
       </Card>
-      <br/>
+      <br />
       <Card>Alpaca Portfolio Performance</Card>
     </Container>
   );
- 
 };
 
 export default async function MyPage() {
-  const session = await getServerSession(authOptions);
+  const session = await getServerSession(authOptions); // ✅ This works in App Router
   if (!session) redirect("/login");
 
-  //const data = await getMyData(); // Secure server-only call
-  
   return (
     <div>
-        <pre>Successfully Authenticated: {session.user?.name}</pre>
-      <Page/>
+      <pre>Successfully Authenticated: {session.user?.name}</pre>
+      <Page />
     </div>
   );
 }
