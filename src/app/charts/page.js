@@ -11,28 +11,28 @@ import CardInfo from './CardInfo';
 import styles from "../styles/charts.module.css";
 
 const gdp_chart_config = {
-  title: "GDP ($T)",
+  //title: "GDP ($T)",
   curveType: "function",
   legend: { position: "bottom" },
   colors: ["#ff8c00", "#094e89"],
 };
 
 const interest_rate_chart_config = {
-  title: "Interest Rates (%)",
+  //title: "Interest Rates (%)",
   curveType: "function",
   legend: { position: "bottom" },
   colors: ["#ff8c00", "#094e89"],
 };
 
 const unemployment_chart_config = {
-  title: "Unemployment (#)",
+  //title: "Unemployment (#)",
   curveType: "function",
   legend: { position: "bottom" },
   colors: ["#ff8c00", "#094e89"],
 };
 
 const cpi_chart_config = {
-  title: "Inflation ($)",
+  //title: "Inflation ($)",
   curveType: "function",
   legend: { position: "bottom" },
   colors: ["#ff8c00", "#094e89"],
@@ -125,7 +125,34 @@ const Page = (props) => {
 
   // Display a loading message while fetching data
   if (loading) {
-    return <div>Loading data...</div>;
+    return (
+      <div style={{
+        display: 'flex',
+        flexDirection: 'column',
+        alignItems: 'center',
+        justifyContent: 'center',
+        padding: '2rem',
+        fontFamily: 'sans-serif',
+        color: '#555'
+      }}>
+        <div style={{
+          width: '40px',
+          height: '40px',
+          border: '4px solid #ccc',
+          borderTop: '4px solid #007bff',
+          borderRadius: '50%',
+          animation: 'spin 1s linear infinite',
+          marginBottom: '1rem'
+        }} />
+        <div>Loading data...</div>
+        <style jsx>{`
+          @keyframes spin {
+            0% { transform: rotate(0deg); }
+            100% { transform: rotate(360deg); }
+          }
+        `}</style>
+      </div>
+    );
   }
 
   // Render chart after data is loaded
@@ -133,9 +160,15 @@ const Page = (props) => {
     <Container className='macro-economic-dashboard'>
       <Row>
         <Col>
-          <h1 className="mt-4 m-3">Financial Dashboard</h1>
-          <h5 className={styles.header}>
-            Here we’re tracking four key macroeconomic indicators: <b>GDP, Unemployment, Interest Rates, and Inflation</b>. 
+          <h1 className="mt-5 m-3">United States, Macroeconomic Snapshot</h1>
+          <h5 className={styles.headerSpaced}>
+            Here we’re tracking <b>four key indicators</b>, for the United States Macroeconomy:
+            <ol>
+              <li><b>GDP</b></li>
+              <li><b>Unemployment</b></li>
+              <li><b>Interest Rates</b></li>
+              <li><b>Inflation</b></li>  
+            </ol>
             This project is a part of <a href='https://shawnsoneja.com' target='_blank'>shawnsoneja.com</a>. You can read more about it <a href='https://humorous-drink-54e.notion.site/Macro-Predictor-Project-Writeup-139b0558046180779d5dfa8641ed15f5' target='_blank'>here</a>.
           </h5>
           <br/>
@@ -144,10 +177,10 @@ const Page = (props) => {
       <Row>
         <Col className="mb-4 d-inline-block justify-content-center" lg={true}>
           <Card className={styles.card}>
+            <h3 className={styles.header}>1. GDP ($T)</h3>
             <Chart
               chartType="LineChart"
-              width="100%"
-              height="400px"
+              className={styles.chartStyle}
               data={gdpData}  // Using the fetched chart data
               options={gdp_chart_config}
             />
@@ -157,10 +190,10 @@ const Page = (props) => {
         </Col>
         <Col className="mb-4 d-inline-block justify-content-center" sm={true}>
           <Card className={styles.card}>
+            <h3 className={styles.header}>2. Unemployment (#)</h3>
             <Chart
               chartType="LineChart"
-              width="100%"
-              height="400px"
+              className={styles.chartStyle}
               data={unemploymentData}  // Using the fetched chart data
               options={unemployment_chart_config}
             />
@@ -172,10 +205,10 @@ const Page = (props) => {
       <Row>
         <Col className="mb-4 d-inline-block justify-content-center">
           <Card className={styles.card}>
+          <h3 className={styles.header}>3. Interest Rates (%)</h3>
             <Chart
               chartType="LineChart"
-              width="100%"
-              height="400px"
+              className={styles.chartStyle}
               data={interestRateData}  // Using the fetched chart data
               options={interest_rate_chart_config}
             />
@@ -185,10 +218,10 @@ const Page = (props) => {
         </Col>
         <Col className="mb-4 d-inline-block justify-content-center">
           <Card className={styles.card}>
+            <h3 className={styles.header}>4. Inflation ($)</h3>
             <Chart
               chartType="LineChart"
-              width="100%"
-              height="400px"
+              className={styles.chartStyle}
               data={cpiData}  // Using the fetched chart data
               options={cpi_chart_config}
             />
