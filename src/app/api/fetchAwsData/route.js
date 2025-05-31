@@ -21,7 +21,13 @@ export async function GET(request) {
 
   try {
     const data = await ddb.send(new ScanCommand({ TableName: "Automated_Process_Logs" }));
-    return new Response(JSON.stringify(data.Items), {
+
+    console.log("Data fetched from DynamoDB:", data);
+    // ✅ Sort by CreatedDate descending (newest first)
+    const sortedItems = data.Items.sort((a, b) =>
+      new Date(b.CreatedDate || b.CreatedDate) - new Date(a.CreatedDate || a.CreatedDate)
+    );
+    return new Response(JSON.stringify(sortedItems), {
       status: 200,
       headers: { "Content-Type": "application/json" },
     });
