@@ -13,6 +13,7 @@ import EquityChart from './EquityChart';
 import { authOptions } from "../api/auth/auth.config";
 import { redirect } from "next/navigation";
 import { getServerSession } from "next-auth";
+import Button from 'react-bootstrap/Button';
 
 function getProtocol() {
   return process.env.NODE_ENV === 'development' ? 'http' : 'https';
@@ -135,7 +136,14 @@ const Page = async (props) => {
         </div>
       </Card>
       <br />
-      <Card>Alpaca Portfolio Performance</Card>
+      <Card>
+        <a href='https://app.alpaca.markets/account/login' target="_blank" rel="noopener noreferrer">
+          <Button>Alpaca Login</Button>
+        </a>
+      </Card>
+      <br />
+      <br />
+      {/* <Card>Alpaca Portfolio Performance</Card> */}
     </Container>
   );
 };
