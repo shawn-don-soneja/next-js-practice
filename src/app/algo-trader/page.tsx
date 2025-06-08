@@ -13,6 +13,7 @@ import EquityChart from './EquityChart';
 import { authOptions } from "../api/auth/auth.config";
 import { redirect } from "next/navigation";
 import { getServerSession } from "next-auth";
+import Button from 'react-bootstrap/Button';
 
 function getProtocol() {
   return process.env.NODE_ENV === 'development' ? 'http' : 'https';
@@ -44,9 +45,12 @@ async function fetchRecords() {
 }
 
 const Page = async (props) => {
-  let records = [];
+  let process_logs = [];
+  let orders = [];
   try {
-    records = await fetchRecords();
+    let response = await fetchRecords();
+    process_logs = response.logs || [];
+    orders = response.orders || [];
   } catch (error) {
     console.error('Error fetching records:', error);
     return (
@@ -65,38 +69,81 @@ const Page = async (props) => {
   return (
     <Container>
       <Card>
-        <h3>Automated Process Logs</h3>
-        <Table striped bordered hover>
-          <thead>
-            <tr>
-              <th>#</th>
-              <th>Log Id</th>
-              <th>Created Date</th>
-              <th>Status</th>
-              <th>Description</th>
-            </tr>
-          </thead>
-          <tbody>
-            {records.length === 0 ? (
+        <h3 className="m-3">Automated Process Logs</h3>
+        <div style={{ maxHeight: '500px', overflowY: 'auto' }}>
+          <Table striped bordered hover>
+            <thead>
               <tr>
-                <td colSpan={5}>No records found</td>
+                <th>#</th>
+                <th>Log Id</th>
+                <th>Created Date</th>
+                <th>Status</th>
+                <th>Description</th>
               </tr>
-            ) : (
-              records.map((record, i) => (
-                <tr key={record.Id || i}>
-                  <td>{i + 1}</td>
-                  <td>{record.Id || "N/A"}</td>
-                  <td>{record.CreatedDate || "N/A"}</td>
-                  <td>{record.Status || "N/A"}</td>
-                  <td>{record.Description || "-"}</td>
+            </thead>
+            <tbody>
+              {process_logs.length === 0 ? (
+                <tr>
+                  <td colSpan={5}>No records found</td>
                 </tr>
-              ))
-            )}
-          </tbody>
-        </Table>
+              ) : (
+                process_logs.map((record, i) => (
+                  <tr key={record.Id || i}>
+                    <td>{i + 1}</td>
+                    <td>{record.Id || "N/A"}</td>
+                    <td>{record.CreatedDate || "N/A"}</td>
+                    <td>{record.Status || "N/A"}</td>
+                    <td>{record.Description || "-"}</td>
+                  </tr>
+                ))
+              )}
+            </tbody>
+          </Table>
+        </div>
       </Card>
       <br />
-      <Card>Alpaca Portfolio Performance</Card>
+      <Card>
+        <h3 className="m-3">Financial Data Orders</h3>
+        <div style={{ maxHeight: '500px', overflowY: 'auto' }}>
+          <Table striped bordered hover>
+            <thead>
+              <tr>
+                <th>#</th>
+                <th>Id</th>
+                <th>Record</th>
+              </tr>
+            </thead>
+            <tbody>
+              {orders.length === 0 ? (
+                <tr>
+                  <td colSpan={5}>No records found</td>
+                </tr>
+              ) : (
+                orders.map((record, i) => (
+                  <tr key={record.Id || i}>
+                    <td>{i + 1}</td>
+                    <td>{record.Id || "N/A"}</td>
+                    <td>
+                      <pre style={{ margin: 0, whiteSpace: 'pre-wrap', wordBreak: 'break-all' }}>
+                        {JSON.stringify(record, null, 2)}
+                      </pre>
+                    </td>
+                  </tr>
+                ))
+              )}
+            </tbody>
+          </Table>
+        </div>
+      </Card>
+      <br />
+      <Card>
+        <a href='https://app.alpaca.markets/account/login' target="_blank" rel="noopener noreferrer">
+          <Button>Alpaca Login</Button>
+        </a>
+      </Card>
+      <br />
+      <br />
+      {/* <Card>Alpaca Portfolio Performance</Card> */}
     </Container>
   );
 };

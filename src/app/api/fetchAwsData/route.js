@@ -21,16 +21,34 @@ export async function GET(request) {
 
   try {
     const data = await ddb.send(new ScanCommand({ TableName: "Automated_Process_Logs" }));
+    const data2 = await ddb.send(new ScanCommand({ TableName: "Financial_Data_Orders" }));
 
     console.log("Data fetched from DynamoDB:", data);
-    // ✅ Sort by CreatedDate descending (newest first)
-    const sortedItems = data.Items.sort((a, b) =>
-      new Date(b.CreatedDate || b.CreatedDate) - new Date(a.CreatedDate || a.CreatedDate)
+
+    // Sort both datasets by CreatedDate descending (newest first)
+    const sortedLogs = data.Items && data.Items.length
+      ? data.Items.sort((a, b) =>
+        new Date(b.CreatedDate || b.CreatedDate) - new Date(a.CreatedDate || a.CreatedDate)
+      )
+      : [];
+
+    const sortedOrders = data2.Items && data2.Items.length
+      ? data2.Items.sort((a, b) =>
+        new Date(b.CreatedDate || b.CreatedDate) - new Date(a.CreatedDate || a.CreatedDate)
+      )
+      : [];
+
+    // Combine both datasets in the response
+    return new Response(
+        JSON.stringify({
+        logs: sortedLogs,
+        orders: sortedOrders,
+      }),
+      {
+        status: 200,
+        headers: { "Content-Type": "application/json" },
+      }
     );
-    return new Response(JSON.stringify(sortedItems), {
-      status: 200,
-      headers: { "Content-Type": "application/json" },
-    });
   } catch (error) {
     return new Response(JSON.stringify({ error: error.message }), {
       status: 500,
