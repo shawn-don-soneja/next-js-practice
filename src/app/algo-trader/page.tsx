@@ -69,7 +69,7 @@ const Page = async (props) => {
   return (
     <Container>
       <Card>
-        <h3 className="m-3">Automated Process Logs</h3>
+        <h3 className="m-3">Automated Process Logs ({process_logs.length})</h3>
         <div style={{ maxHeight: '500px', overflowY: 'auto' }}>
           <Table striped bordered hover>
             <thead>
@@ -103,7 +103,7 @@ const Page = async (props) => {
       </Card>
       <br />
       <Card>
-        <h3 className="m-3">Financial Data Orders</h3>
+        <h3 className="m-3">Financial Data Orders ({orders.length})</h3>
         <div style={{ maxHeight: '500px', overflowY: 'auto' }}>
           <Table striped bordered hover>
             <thead>
@@ -138,7 +138,7 @@ const Page = async (props) => {
       <br />
       {/* New Orders Chart Card */}
       <Card>
-        <h3 className="m-3">Alpaca Orders Chart</h3>
+        <h3 className="m-3">Alpaca Orders Chart (0)</h3>
         <div style={{ maxHeight: '500px', overflowY: 'auto' }}>
           {/* TODO: Replace with actual chart or data for orders */}
           <pre style={{ margin: 0, color: '#888' }}>Orders chart coming soon...</pre>
@@ -147,7 +147,7 @@ const Page = async (props) => {
       <br />
       {/* New Positions Card */}
       <Card>
-        <h3 className="m-3">Alpaca Positions</h3>
+        <h3 className="m-3">Alpaca Positions (0)</h3>
         <div style={{ maxHeight: '500px', overflowY: 'auto' }}>
           {/* TODO: Replace with actual chart or data for positions */}
           <pre style={{ margin: 0, color: '#888' }}>Positions chart coming soon...</pre>
