@@ -136,6 +136,24 @@ const Page = async (props) => {
         </div>
       </Card>
       <br />
+      {/* New Orders Chart Card */}
+      <Card>
+        <h3 className="m-3">Alpaca Orders Chart</h3>
+        <div style={{ maxHeight: '500px', overflowY: 'auto' }}>
+          {/* TODO: Replace with actual chart or data for orders */}
+          <pre style={{ margin: 0, color: '#888' }}>Orders chart coming soon...</pre>
+        </div>
+      </Card>
+      <br />
+      {/* New Positions Card */}
+      <Card>
+        <h3 className="m-3">Alpaca Positions</h3>
+        <div style={{ maxHeight: '500px', overflowY: 'auto' }}>
+          {/* TODO: Replace with actual chart or data for positions */}
+          <pre style={{ margin: 0, color: '#888' }}>Positions chart coming soon...</pre>
+        </div>
+      </Card>
+      <br />
       <Card>
         <a href='https://app.alpaca.markets/account/login' target="_blank" rel="noopener noreferrer">
           <Button>Alpaca Login</Button>
