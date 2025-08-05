@@ -16,7 +16,7 @@ const geistMono = localFont({
 });
 
 export const metadata = {
-  title: "Macroeconomic Financial Dashboard",
+  title: "Portfolio Projects - Shawn Soneja",
   description: "Created by Shawn Soneja",
 };
 
