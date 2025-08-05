@@ -44,9 +44,12 @@ async function fetchRecords() {
   return res.json();
 }
 
+type Order = { Id?: string; [key: string]: any };
+type Log = { Id?: string; CreatedDate?: string; Status?: string; Description?: string; [key: string]: any };
+
 const Page = async (props) => {
-  let process_logs = [];
-  let orders = [];
+  let process_logs: Log[] = [];
+  let orders: Order[] = [];
   try {
     let response = await fetchRecords();
     process_logs = response.logs || [];
