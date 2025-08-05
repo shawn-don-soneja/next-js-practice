@@ -11,6 +11,7 @@
   "dependencies": {
     "@aws-sdk/client-dynamodb": "^3.812.0",
     "@aws-sdk/lib-dynamodb": "^3.814.0",
+    "@supabase/auth-helpers-nextjs": "^0.6.1",
     "@vercel/analytics": "^1.4.1",
     "bootstrap": "^5.3.3",
     "next": "^15.3.2",
