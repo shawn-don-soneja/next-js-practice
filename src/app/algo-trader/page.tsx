@@ -168,7 +168,7 @@ const Page = async (props) => {
 
 export default async function MyPage() {
   const session = await getServerSession(authOptions); // ✅ This works in App Router
-  if (!session) redirect("/login");
+  if (!session) redirect("/algo-trader-login");
 
   return (
     <div>
