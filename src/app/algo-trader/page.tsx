@@ -44,9 +44,12 @@ async function fetchRecords() {
   return res.json();
 }
 
+type Order = { Id?: string; [key: string]: any };
+type Log = { Id?: string; CreatedDate?: string; Status?: string; Description?: string; [key: string]: any };
+
 const Page = async (props) => {
-  let process_logs = [];
-  let orders = [];
+  let process_logs: Log[] = [];
+  let orders: Order[] = [];
   try {
     let response = await fetchRecords();
     process_logs = response.logs || [];
@@ -168,7 +171,7 @@ const Page = async (props) => {
 
 export default async function MyPage() {
   const session = await getServerSession(authOptions); // ✅ This works in App Router
-  if (!session) redirect("/login");
+  if (!session) redirect("/algo-trader-login");
 
   return (
     <div>

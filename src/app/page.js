@@ -18,6 +18,7 @@ export default function Home() {
           <li><a href="/charts">/charts</a></li>
           <li><a href="/dashboard">/dashboard</a></li>
           <li><a href="/algo-trader">/algo-trader</a></li>
+          <li><a href="/health-tracker">/health-tracker</a></li>
           {/*
           <li>Get started by editing <code>src/app/page.js</code>.</li>
           <li>Save and see your changes instantly.</li>
