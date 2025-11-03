@@ -9,6 +9,7 @@ import Table from 'react-bootstrap/Table';
 import styles from "../styles/charts.module.css";
 import { headers } from 'next/headers';
 import EquityChart from './EquityChart';
+import ClientTables from './ClientTables';
 
 import { authOptions } from "../api/auth/auth.config";
 import { redirect } from "next/navigation";
@@ -71,73 +72,7 @@ const Page = async (props) => {
   // Display the data when successfully loaded
   return (
     <Container>
-      <Card>
-        <h3 className="m-3">Automated Process Logs ({process_logs.length})</h3>
-        <div style={{ maxHeight: '500px', overflowY: 'auto' }}>
-          <Table striped bordered hover>
-            <thead>
-              <tr>
-                <th>#</th>
-                <th>Log Id</th>
-                <th>Created Date</th>
-                <th>Status</th>
-                <th>Description</th>
-              </tr>
-            </thead>
-            <tbody>
-              {process_logs.length === 0 ? (
-                <tr>
-                  <td colSpan={5}>No records found</td>
-                </tr>
-              ) : (
-                process_logs.map((record, i) => (
-                  <tr key={record.Id || i}>
-                    <td>{i + 1}</td>
-                    <td>{record.Id || "N/A"}</td>
-                    <td>{record.CreatedDate || "N/A"}</td>
-                    <td>{record.Status || "N/A"}</td>
-                    <td>{record.Description || "-"}</td>
-                  </tr>
-                ))
-              )}
-            </tbody>
-          </Table>
-        </div>
-      </Card>
-      <br />
-      <Card>
-        <h3 className="m-3">Financial Data Orders ({orders.length})</h3>
-        <div style={{ maxHeight: '500px', overflowY: 'auto' }}>
-          <Table striped bordered hover>
-            <thead>
-              <tr>
-                <th>#</th>
-                <th>Id</th>
-                <th>Record</th>
-              </tr>
-            </thead>
-            <tbody>
-              {orders.length === 0 ? (
-                <tr>
-                  <td colSpan={5}>No records found</td>
-                </tr>
-              ) : (
-                orders.map((record, i) => (
-                  <tr key={record.Id || i}>
-                    <td>{i + 1}</td>
-                    <td>{record.Id || "N/A"}</td>
-                    <td>
-                      <pre style={{ margin: 0, whiteSpace: 'pre-wrap', wordBreak: 'break-all' }}>
-                        {JSON.stringify(record, null, 2)}
-                      </pre>
-                    </td>
-                  </tr>
-                ))
-              )}
-            </tbody>
-          </Table>
-        </div>
-      </Card>
+      <ClientTables processLogs={process_logs} orders={orders} />
       <br />
       {/* New Orders Chart Card */}
       <Card>
