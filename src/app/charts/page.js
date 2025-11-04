@@ -169,7 +169,7 @@ const Page = (props) => {
               <li><b>Interest Rates</b></li>
               <li><b>Inflation</b></li>  
             </ol>
-            This project is a part of <a href='https://shawnsoneja.com' target='_blank'>shawnsoneja.com</a>. You can read more about it <a href='https://humorous-drink-54e.notion.site/Macro-Predictor-Project-Writeup-139b0558046180779d5dfa8641ed15f5' target='_blank'>here</a>.
+            This dashboard is refreshed daily. The project is a part of <a href='https://shawnsoneja.com' target='_blank'>shawnsoneja.com</a>. You can read more about it <a href='https://humorous-drink-54e.notion.site/Macro-Predictor-Project-Writeup-139b0558046180779d5dfa8641ed15f5' target='_blank'>here</a>.
           </h5>
           <br/>
         </Col>
@@ -177,27 +177,25 @@ const Page = (props) => {
       <Row>
         <Col className="mb-4 d-inline-block justify-content-center" lg={true}>
           <Card className={styles.card}>
-            <h3 className={styles.header}>1. GDP ($T)</h3>
+            <h3 className={styles.header}>1. GDP ($T): <Badge bg="secondary" className={styles.badgeText}>{gdpTrend > 0 ? "Increasing" : "Decreasing"} (${Number(gdpTrend.toFixed(2))}B/quarter)</Badge></h3>
             <Chart
               chartType="LineChart"
               className={styles.chartStyle}
               data={gdpData}  // Using the fetched chart data
               options={gdp_chart_config}
             />
-            <h5 className='m-3'>Trend: <Badge bg="secondary">{gdpTrend > 0 ? "Increasing" : "Decreasing"} (${Number(gdpTrend.toFixed(2))}B/quarter)</Badge></h5>
             <CardInfo />
           </Card>
         </Col>
         <Col className="mb-4 d-inline-block justify-content-center" sm={true}>
           <Card className={styles.card}>
-            <h3 className={styles.header}>2. Unemployment (#)</h3>
+            <h3 className={styles.header}>2. Unemployment (#): <Badge bg="secondary" className={styles.badgeText}>{unemploymentTrend > 0 ? "Increasing" : "Decreasing"} ({Number(unemploymentTrend.toFixed(2))} employees/month)</Badge></h3>
             <Chart
               chartType="LineChart"
               className={styles.chartStyle}
               data={unemploymentData}  // Using the fetched chart data
               options={unemployment_chart_config}
             />
-            <h5 className='m-3'>Trend: <Badge bg="secondary">{unemploymentTrend > 0 ? "Increasing" : "Decreasing"} ({Number(unemploymentTrend.toFixed(2))} employed persons/month)</Badge></h5>
             <CardInfo dataType="Unemployment"/>
           </Card>
         </Col>
@@ -205,27 +203,25 @@ const Page = (props) => {
       <Row>
         <Col className="mb-4 d-inline-block justify-content-center">
           <Card className={styles.card}>
-          <h3 className={styles.header}>3. Interest Rates (%)</h3>
+          <h3 className={styles.header}>3. Interest Rates (%): <Badge bg="secondary" className={styles.badgeText}>{interestRateTrend > 0 ? "Increasing" : "Decreasing"} ({Number(interestRateTrend.toFixed(2))}%/month)</Badge></h3>
             <Chart
               chartType="LineChart"
               className={styles.chartStyle}
               data={interestRateData}  // Using the fetched chart data
               options={interest_rate_chart_config}
             />
-            <h5 className='m-3'>Trend: <Badge bg="secondary">{interestRateTrend > 0 ? "Increasing" : "Decreasing"} ({Number(interestRateTrend.toFixed(2))}%/month)</Badge></h5>
             <CardInfo dataType="Interest Rate"/>
           </Card>
         </Col>
         <Col className="mb-4 d-inline-block justify-content-center">
           <Card className={styles.card}>
-            <h3 className={styles.header}>4. Inflation ($)</h3>
+            <h3 className={styles.header}>4. Inflation ($): <Badge bg="secondary" className={styles.badgeText}>{cpiTrend > 0 ? "Increasing" : "Decreasing"} (${Number(cpiTrend.toFixed(2))}/month)</Badge></h3>
             <Chart
               chartType="LineChart"
               className={styles.chartStyle}
               data={cpiData}  // Using the fetched chart data
               options={cpi_chart_config}
             />
-            <h5 className='m-3'>Trend: <Badge bg="secondary">{cpiTrend > 0 ? "Increasing" : "Decreasing"} (${Number(cpiTrend.toFixed(2))}/month)</Badge></h5>
             <CardInfo dataType="CPI"/>
           </Card>
         </Col>

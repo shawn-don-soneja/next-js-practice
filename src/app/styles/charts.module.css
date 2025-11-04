@@ -34,8 +34,11 @@
   line-height: 1.5;
 }
 
+.badgeText{
+  font-size: 15px;
+}
+
 .chartStyle{
-  background: blue;
   color: blue;
   padding: 0px;
   margin: auto;
