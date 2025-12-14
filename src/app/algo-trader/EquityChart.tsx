@@ -51,13 +51,14 @@ export default function EquityChart({ input }: { input?: any }) {
     hAxis: { format: 'MMM dd' },
     vAxis: { title: 'Equity' },
     explorer: { axis: 'horizontal', keepInBounds: true },
+    colors: ["#e69138", "#097138"],
   };
 
   return (
     <Card className="h-100">
       <Card.Header>
         <h3>Portfolio Value</h3>
-        <span className='text-secondary'>Alpaca:</span> <code>Automated_Process_Logs</code>
+        <span className='text-secondary'>Alpaca:</span> <code>/account/portfolio/history?period=1M&timeframe=1D</code>
       </Card.Header>
       <Card.Body style={{ padding: 0 }}>
         <Chart
