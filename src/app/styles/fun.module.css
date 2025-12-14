@@ -1,0 +1,51 @@
+.card {
+  width: 602px;
+  margin: auto;
+  overflow: hidden;
+}
+
+@media (max-width: 1400px) and (min-width: 650px) {
+  .card {
+    width: 702px;
+  }
+}
+
+@media (max-width: 650px) {
+  .card {
+    max-width: 375px;
+  }
+}
+
+.header {
+  margin: 1rem;
+  margin-bottom: 0;
+  color: #212529;
+  font-size: clamp(1rem, 2.5vw, 1.5rem); /* Adjust dynamically */
+  line-height: 1.5;
+  z-index:10;
+}
+
+.headerSpaced {
+  margin-top: 2.5rem;
+  margin-left: 1rem;
+  margin-bottom: 2.0rem;
+  color: #6c757d;
+  font-size: clamp(1rem, 2.5vw, 1.5rem); /* Adjust dynamically */
+  line-height: 1.5;
+}
+
+.badgeText{
+  font-size: 15px;
+}
+
+.chartStyle{
+  color: blue;
+  padding: 0px;
+  margin: auto;
+  margin-left: -7%;
+  margin-top: -5%;
+  margin-bottom: 5%;
+  width: 121%;
+  height: 400px;
+  z-index:1;
+}

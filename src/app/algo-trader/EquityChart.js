@@ -1,3 +1,4 @@
+"use client";
 import React from 'react';
 import { Card, Container } from 'react-bootstrap';
 import { Chart } from 'react-google-charts';
