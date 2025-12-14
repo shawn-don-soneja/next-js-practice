@@ -8,8 +8,8 @@ import Row from 'react-bootstrap/Row';
 import Table from 'react-bootstrap/Table';
 import styles from "../styles/charts.module.css";
 import { headers } from 'next/headers';
-import EquityChart from './EquityChart';
-import ClientTables from './ClientTables';
+import EquityChartNoSSR from './EquityChartNoSSR';
+import ClientTablesNoSSR from './ClientTablesNoSSR';
 
 import { authOptions } from "../api/auth/auth.config";
 import { redirect } from "next/navigation";
@@ -72,7 +72,9 @@ const Page = async (props) => {
   // Display the data when successfully loaded
   return (
     <Container>
-      <ClientTables processLogs={process_logs} orders={orders} />
+      <ClientTablesNoSSR processLogs={process_logs} orders={orders} />
+      <br />
+      <EquityChartNoSSR />
       <br />
       {/* New Orders Chart Card */}
       <Card>
