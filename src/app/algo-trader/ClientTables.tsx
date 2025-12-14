@@ -1,6 +1,6 @@
 "use client";
 
-import React, { useMemo, useState } from "react";
+import React, { useMemo, useState, useRef, useEffect } from "react";
 import Row from "react-bootstrap/Row";
 import Col from "react-bootstrap/Col";
 import Card from "react-bootstrap/Card";
@@ -80,6 +80,11 @@ export default function ClientTables({ orders = [], processLogs = [], extraTable
   const logsTableMinWidth = 700;
   const orderTableMinWidth = Math.max(800, orderColumns.length * 150);
 
+  // Column resizing state/ref
+  const [ordersColWidths, setOrdersColWidths] = useState<number[]>([120, 200, 80, 150]);
+  const [logsColWidths, setLogsColWidths] = useState<number[]>([120, 180, 80, 300]);
+  const resizingRef = useRef<{ table: 'orders' | 'logs'; colIndex: number; startX: number; startWidth: number } | null>(null);
+
   const toggleLogsSort = (key: string) => {
     if (logsSortKey === key) {
       setLogsSortDir((d) => (d === "asc" ? "desc" : "asc"));
@@ -125,6 +130,87 @@ export default function ClientTables({ orders = [], processLogs = [], extraTable
     cursor: "pointer",
   };
 
+  const resizeHandleStyle: React.CSSProperties = {
+    position: 'absolute',
+    right: 0,
+    top: 0,
+    height: '100%',
+    width: 8,
+    cursor: 'col-resize',
+    zIndex: 6,
+    background: 'transparent'
+  };
+
+  const clamp = (v: number, min = 40, max = 2000) => Math.max(min, Math.min(max, v));
+
+  useEffect(() => {
+    const onMouseMove = (e: MouseEvent) => {
+      const info = resizingRef.current;
+      if (!info) return;
+      const delta = e.clientX - info.startX;
+      const newWidth = clamp(info.startWidth + delta);
+      if (info.table === 'orders') {
+        setOrdersColWidths((w) => {
+          const copy = [...w];
+          copy[info.colIndex] = newWidth;
+          return copy;
+        });
+      } else {
+        setLogsColWidths((w) => {
+          const copy = [...w];
+          copy[info.colIndex] = newWidth;
+          return copy;
+        });
+      }
+    };
+
+    const onMouseUp = () => {
+      resizingRef.current = null;
+      window.removeEventListener('mousemove', onMouseMove);
+      window.removeEventListener('mouseup', onMouseUp);
+    };
+
+    // attach/detach handled by mousedown handler which adds these listeners
+    return () => {
+      window.removeEventListener('mousemove', onMouseMove);
+      window.removeEventListener('mouseup', onMouseUp);
+    };
+  }, []);
+
+  const startResize = (e: React.MouseEvent, table: 'orders' | 'logs', colIndex: number) => {
+    e.preventDefault();
+    e.stopPropagation();
+    const startX = e.clientX;
+    const startWidth = table === 'orders' ? (ordersColWidths[colIndex] ?? 100) : (logsColWidths[colIndex] ?? 100);
+    resizingRef.current = { table, colIndex, startX, startWidth };
+    const onMouseMove = (ev: MouseEvent) => {
+      const info = resizingRef.current;
+      if (!info) return;
+      const delta = ev.clientX - info.startX;
+      const newWidth = clamp(info.startWidth + delta);
+      if (info.table === 'orders') {
+        setOrdersColWidths((w) => {
+          const copy = [...w];
+          copy[info.colIndex] = newWidth;
+          return copy;
+        });
+      } else {
+        setLogsColWidths((w) => {
+          const copy = [...w];
+          copy[info.colIndex] = newWidth;
+          return copy;
+        });
+      }
+    };
+    const onMouseUp = () => {
+      resizingRef.current = null;
+      window.removeEventListener('mousemove', onMouseMove);
+      window.removeEventListener('mouseup', onMouseUp);
+    };
+    window.addEventListener('mousemove', onMouseMove);
+    window.addEventListener('mouseup', onMouseUp);
+  };
+
   // Minimal sample renderers — use filtered arrays and add scroll wrapper
   const OrdersTable = (
     <Card className="h-100">
@@ -141,13 +227,34 @@ export default function ClientTables({ orders = [], processLogs = [], extraTable
           />
         </div>
         <div style={tableWrapperStyle}>
-          <Table responsive striped bordered size="sm" className="mb-0" style={{ minWidth: orderTableMinWidth }}>
+          <Table responsive striped bordered size="sm" className="mb-0" style={{ minWidth: orderTableMinWidth, tableLayout: 'fixed' }}>
+            <colgroup>
+              {ordersColWidths.map((w, i) => (
+                <col key={i} style={{ width: `${w}px` }} />
+              ))}
+            </colgroup>
             <thead>
               <tr>
-                <th onClick={() => toggleOrdersSort("Id")} style={stickyThStyle}>Id{arrow(ordersSortKey, "Id", ordersSortDir)}</th>
-                <th onClick={() => toggleOrdersSort("symbol")} style={stickyThStyle}>Symbol{arrow(ordersSortKey, "symbol", ordersSortDir)}</th>
-                <th onClick={() => toggleOrdersSort("qty")} style={stickyThStyle}>Qty{arrow(ordersSortKey, "qty", ordersSortDir)}</th>
-                <th onClick={() => toggleOrdersSort("status")} style={stickyThStyle}>Status{arrow(ordersSortKey, "status", ordersSortDir)}</th>
+                <th onClick={() => toggleOrdersSort("Id")} style={{ ...stickyThStyle, position: 'sticky' }}>
+                  <div style={{ position: 'relative' }}>Id{arrow(ordersSortKey, "Id", ordersSortDir)}
+                    <div title="Resize" role="separator" aria-orientation="horizontal" style={resizeHandleStyle} onMouseDown={(e) => startResize(e, 'orders', 0)} />
+                  </div>
+                </th>
+                <th onClick={() => toggleOrdersSort("symbol")} style={{ ...stickyThStyle, position: 'sticky' }}>
+                  <div style={{ position: 'relative' }}>Symbol{arrow(ordersSortKey, "symbol", ordersSortDir)}
+                    <div title="Resize" role="separator" aria-orientation="horizontal" style={resizeHandleStyle} onMouseDown={(e) => startResize(e, 'orders', 1)} />
+                  </div>
+                </th>
+                <th onClick={() => toggleOrdersSort("qty")} style={{ ...stickyThStyle, position: 'sticky' }}>
+                  <div style={{ position: 'relative' }}>Qty{arrow(ordersSortKey, "qty", ordersSortDir)}
+                    <div title="Resize" role="separator" aria-orientation="horizontal" style={resizeHandleStyle} onMouseDown={(e) => startResize(e, 'orders', 2)} />
+                  </div>
+                </th>
+                <th onClick={() => toggleOrdersSort("status")} style={{ ...stickyThStyle, position: 'sticky' }}>
+                  <div style={{ position: 'relative' }}>Status{arrow(ordersSortKey, "status", ordersSortDir)}
+                    <div title="Resize" role="separator" aria-orientation="horizontal" style={resizeHandleStyle} onMouseDown={(e) => startResize(e, 'orders', 3)} />
+                  </div>
+                </th>
               </tr>
             </thead>
             <tbody>
@@ -183,13 +290,34 @@ export default function ClientTables({ orders = [], processLogs = [], extraTable
           />
         </div>
         <div style={tableWrapperStyle}>
-          <Table responsive striped bordered size="sm" className="mb-0" style={{ minWidth: logsTableMinWidth }}>
+          <Table responsive striped bordered size="sm" className="mb-0" style={{ minWidth: logsTableMinWidth, tableLayout: 'fixed' }}>
+            <colgroup>
+              {logsColWidths.map((w, i) => (
+                <col key={i} style={{ width: `${w}px` }} />
+              ))}
+            </colgroup>
             <thead>
               <tr>
-                <th onClick={() => toggleLogsSort("Id")} style={stickyThStyle}>Id{arrow(logsSortKey, "Id", logsSortDir)}</th>
-                <th onClick={() => toggleLogsSort("CreatedDate")} style={stickyThStyle}>Created{arrow(logsSortKey, "CreatedDate", logsSortDir)}</th>
-                <th onClick={() => toggleLogsSort("Status")} style={stickyThStyle}>Status{arrow(logsSortKey, "Status", logsSortDir)}</th>
-                <th onClick={() => toggleLogsSort("Description")} style={stickyThStyle}>Description{arrow(logsSortKey, "Description", logsSortDir)}</th>
+                <th onClick={() => toggleLogsSort("Id")} style={{ ...stickyThStyle, position: 'sticky' }}>
+                  <div style={{ position: 'relative' }}>Id{arrow(logsSortKey, "Id", logsSortDir)}
+                    <div title="Resize" role="separator" aria-orientation="horizontal" style={resizeHandleStyle} onMouseDown={(e) => startResize(e, 'logs', 0)} />
+                  </div>
+                </th>
+                <th onClick={() => toggleLogsSort("CreatedDate")} style={{ ...stickyThStyle, position: 'sticky' }}>
+                  <div style={{ position: 'relative' }}>Created{arrow(logsSortKey, "CreatedDate", logsSortDir)}
+                    <div title="Resize" role="separator" aria-orientation="horizontal" style={resizeHandleStyle} onMouseDown={(e) => startResize(e, 'logs', 1)} />
+                  </div>
+                </th>
+                <th onClick={() => toggleLogsSort("Status")} style={{ ...stickyThStyle, position: 'sticky' }}>
+                  <div style={{ position: 'relative' }}>Status{arrow(logsSortKey, "Status", logsSortDir)}
+                    <div title="Resize" role="separator" aria-orientation="horizontal" style={resizeHandleStyle} onMouseDown={(e) => startResize(e, 'logs', 2)} />
+                  </div>
+                </th>
+                <th onClick={() => toggleLogsSort("Description")} style={{ ...stickyThStyle, position: 'sticky' }}>
+                  <div style={{ position: 'relative' }}>Description{arrow(logsSortKey, "Description", logsSortDir)}
+                    <div title="Resize" role="separator" aria-orientation="horizontal" style={resizeHandleStyle} onMouseDown={(e) => startResize(e, 'logs', 3)} />
+                  </div>
+                </th>
               </tr>
             </thead>
             <tbody>
