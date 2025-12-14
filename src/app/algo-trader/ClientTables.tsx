@@ -198,9 +198,9 @@ export default function ClientTables({ processLogs, orders }: { processLogs: Log
                     <td>{record.Id || "N/A"}</td>
                     {orderColumns.map((col) => (
                       <td key={col} style={{ verticalAlign: "top" }}>
-                        <pre style={{ margin: 0, whiteSpace: "pre", overflowX: "auto" }}>
+                        <div style={{ margin: 0, whiteSpace: "pre-wrap", overflowX: "auto", fontFamily: "monospace" }}>
                           {renderOrderCell(record, col)}
-                        </pre>
+                        </div>
                       </td>
                     ))}
                   </tr>
