@@ -38,16 +38,14 @@ const options = {
 
 export default function EquityChart() {
   return (
-    <Container className="my-4">
-      <Card className="p-3">
-        <Chart
-          chartType="LineChart"
-          width="100%"
-          height="400px"
-          data={chartData}
-          options={options}
-        />
-      </Card>
-    </Container>
+    <Card className="h-100">
+      <Card.Header>
+        <h3>Portfolio Value</h3>
+        <span className='text-secondary'>Alpaca:</span> <code>Automated_Process_Logs</code>
+      </Card.Header>
+      <Card.Body style={{ padding: 0 }}>
+        test
+      </Card.Body>
+    </Card>
   );
 }

@@ -214,7 +214,10 @@ export default function ClientTables({ orders = [], processLogs = [], extraTable
   // Minimal sample renderers — use filtered arrays and add scroll wrapper
   const OrdersTable = (
     <Card className="h-100">
-      <Card.Header>Orders</Card.Header>
+      <Card.Header>
+        <h3>Orders</h3>
+        <span className='text-secondary'>DynamoDB:</span> <code>Financial_Data_Orders</code>
+      </Card.Header>
       <Card.Body style={{ padding: 0 }}>
         <div style={{ padding: 8 }}>
           {/* optional search input if you want to use the existing query state */}
@@ -277,7 +280,10 @@ export default function ClientTables({ orders = [], processLogs = [], extraTable
 
   const LogsTable = (
     <Card className="h-100">
-      <Card.Header>Process Logs</Card.Header>
+      <Card.Header>
+        <h3>Process Logs</h3>
+        <span className='text-secondary'>DynamoDB:</span> <code>Automated_Process_Logs</code>
+      </Card.Header>
       <Card.Body style={{ padding: 0 }}>
         <div style={{ padding: 8 }}>
           {/* optional search input if you want to use the existing query state */}
