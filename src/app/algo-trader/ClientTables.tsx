@@ -112,7 +112,8 @@ export default function ClientTables({ orders = [], processLogs = [], extraTable
 
   const tableWrapperStyle: React.CSSProperties = {
     maxHeight: 400,
-    overflow: "auto",
+    overflowY: "auto",
+    overflowX: "auto",
     position: "relative",
   };
 
@@ -181,8 +182,8 @@ export default function ClientTables({ orders = [], processLogs = [], extraTable
             className="mb-2"
           />
         </div>
-        <div style={{ ...tableWrapperStyle, minWidth: logsTableMinWidth }}>
-          <Table responsive striped bordered size="sm" className="mb-0">
+        <div style={tableWrapperStyle}>
+          <Table responsive striped bordered size="sm" className="mb-0" style={{ minWidth: logsTableMinWidth }}>
             <thead>
               <tr>
                 <th onClick={() => toggleLogsSort("Id")} style={stickyThStyle}>Id{arrow(logsSortKey, "Id", logsSortDir)}</th>
