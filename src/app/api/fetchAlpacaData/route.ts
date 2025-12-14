@@ -3,8 +3,9 @@ import { getToken } from "next-auth/jwt";
 export async function GET(request) {
   const session = await getToken({ req: request, secret: process.env.NEXTAUTH_SECRET });
   const alpacaBaseUrl = process.env.ALPACA_BASE_URL;
+  const alpacaClient = process.env.ALPACA_CLIENT_KEY;
   const alpacaSecret = process.env.ALPACA_SECRET_KEY;
-  const portfolioHistoryUrl = process.env.ALPACA_BASE_URL;
+  const portfolioHistoryEndpoint = process.env.ALPACA_PORTFOLIO_HISTORY_ENDPOINT;
 
   console.log("Session:", session);
 
@@ -19,12 +20,10 @@ export async function GET(request) {
     // Request for Alpaca Data
       // 1. Portfolio Value overtime - v2/account/portfolio/history?period=1M&timeframe=1D
 
-
-    const token = session.accessToken;
-    
+    const token = session.accessToken;    
 
     // ensure env/values are present
-    if (!alpacaBaseUrl || !alpacaSecret) {
+    if (!alpacaBaseUrl || !alpacaClient || !alpacaSecret ) {
       return new Response(JSON.stringify({ error: "Missing Alpaca credentials" }), {
         status: 500,
         headers: { "Content-Type": "application/json" },
@@ -32,19 +31,18 @@ export async function GET(request) {
     }
 
     const headers = {
-      "APCA-API-KEY-ID": alpacaBaseUrl,
+      "APCA-API-KEY-ID": alpacaClient,
       "APCA-API-SECRET-KEY": alpacaSecret,
-      Authorization: `Bearer ${token}`,
     };
 
+    const requestUrl = `${alpacaBaseUrl}${portfolioHistoryEndpoint}`;
     const [portfolioResponse] = await Promise.all([
-      fetch(`${portfolioHistoryUrl}/v2/account/portfolio/history?period=1M&timeframe=1D`, {
+      fetch(requestUrl, {
       headers,
       })
     ]);
 
     const portfolioHistory = await portfolioResponse.json();
-
 
     // Combine both datasets in the response
     return new Response(
