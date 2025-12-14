@@ -21,17 +21,20 @@ function getProtocol() {
   return process.env.NODE_ENV === 'development' ? 'http' : 'https';
 }
 
-async function fetchRecords() {
+async function fetchAwsRecords() {
   console.log('Fetching records from AWS...');
   const headersList = await headers();
   const host = headersList.get('host');
-  console.log('host: ' + host);
+  console.log('host: '+ host);
   const protocol = getProtocol();
-  const myURL = `${protocol}://${host}/api/fetchAwsData`;
-  console.log('myURL: ' + myURL);
+  const myAwsURL = `${protocol}://${host}/api/fetchAwsData`;
+  
+  console.log('myAwsURL: ' + myAwsURL);
   const cookie = headersList.get('cookie');
 
-  const res = await fetch(myURL, {
+
+  // Retrieve AWS data (Automated_Process_Logs and Financial_Data_Orders)
+  const res_aws = await fetch(myAwsURL, {
     next: { revalidate: 0 },
     headers: {
       'Content-Type': 'application/json',
@@ -39,23 +42,57 @@ async function fetchRecords() {
     },
   });
 
-  if (!res.ok) {
-    const errorText = await res.text(); // Attempt to get error details from the response
-    throw new Error(`Failed to fetch records: ${res.status} ${res.statusText} - ${errorText}`);
+  if (!res_aws.ok) {
+    const errorText = await res_aws.text(); // Attempt to get error details from the response
+    throw new Error(`Failed to fetch records: ${res_aws.status} ${res_aws.statusText} - ${errorText}`);
   }
-  return res.json();
+  return res_aws.json();
+}
+
+async function fetchAlpacaRecords() {
+  const headersList = await headers();
+  const host = headersList.get('host');
+  console.log('host: ' + host);
+  const protocol = getProtocol();
+  const myAlpacaURL = `${protocol}://${host}/api/fetchAlpacaData`;
+  const cookie = headersList.get('cookie');
+  const res_alpaca = await fetch(myAlpacaURL, {
+    next: { revalidate: 0 },
+    headers: {
+      'Content-Type': 'application/json',
+      cookie: cookie || '', // ✅ Fix
+    },
+  });
+  if (!res_alpaca.ok) {
+    const errorText = await res_alpaca.text(); // Attempt to get error details from the response
+    throw new Error(`Failed to fetch records: ${res_alpaca.status} ${res_alpaca.statusText} - ${errorText}`);
+  }
+  return res_alpaca.json();
 }
 
 type Order = { Id?: string; [key: string]: any };
 type Log = { Id?: string; CreatedDate?: string; Status?: string; Description?: string; [key: string]: any };
+type PortfolioHistory = {
+  timestamp?: number[];
+  equity?: number[];
+  profit_loss?: number[];
+  profit_loss_pct?: number[];
+  base_value?: number;
+  base_value_asof?: string;
+  timeframe?: string;
+};
 
 const Page = async (props) => {
   let process_logs: Log[] = [];
   let orders: Order[] = [];
+  let portfolioHistory: PortfolioHistory[] = [];
   try {
-    let response = await fetchRecords();
-    process_logs = response.logs || [];
-    orders = response.orders || [];
+    let awsResponse = await fetchAwsRecords();
+    process_logs = awsResponse.logs || [];
+    orders = awsResponse.orders || [];
+
+    let alpacaResponse = await fetchAlpacaRecords();
+    portfolioHistory = alpacaResponse.data || [];
   } catch (error) {
     console.error('Error fetching records:', error);
     return (
@@ -76,7 +113,7 @@ const Page = async (props) => {
       <StrategySelection/>
       <ClientTablesNoSSR processLogs={process_logs} orders={orders} />
       <br />
-      <EquityChartNoSSR />
+      <EquityChartNoSSR input={portfolioHistory}/>
       <br />
       {/* New Orders Chart Card */}
       <Card>
