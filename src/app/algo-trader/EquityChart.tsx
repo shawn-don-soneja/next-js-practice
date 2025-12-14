@@ -1,9 +1,9 @@
 "use client";
-import React from 'react';
-import { Card, Container } from 'react-bootstrap';
+import React, { useMemo } from 'react';
+import { Card } from 'react-bootstrap';
 import { Chart } from 'react-google-charts';
 
-const equityData = {
+const defaultEquityData = {
   timestamp: [
     1745452800, 1745539200, 1745625600, 1745884800, 1745971200,
     1746057600, 1746144000, 1746230400, 1746489600, 1746576000,
@@ -20,23 +20,39 @@ const equityData = {
   ]
 };
 
-// Format data for Google Charts
-const chartData = [
-  ['Date', 'Equity'],
-  ...equityData.timestamp.map((ts, i) => [
-    new Date(ts * 1000),
-    equityData.equity[i]
-  ])
-];
-
-const options = {
-  title: 'Equity Over Time',
-  curveType: 'function',
-  legend: { position: 'none' },
-  hAxis: { format: 'MMM dd' },
+type EquityInput = {
+  timestamp?: number[];
+  equity?: number[];
+  profit_loss?: number[];
+  profit_loss_pct?: number[];
+  base_value?: number;
+  base_value_asof?: string;
+  timeframe?: string;
 };
 
-export default function EquityChart() {
+export default function EquityChart({ input }: { input?: any }) {
+  const payload: EquityInput = useMemo(() => {
+    if (!input) return defaultEquityData;
+    return input?.data ?? input ?? defaultEquityData;
+  }, [input]);
+
+  const chartData = useMemo(() => {
+    if (!payload?.timestamp || !payload?.equity) return [['Date', 'Equity']];
+    return [
+      ['Date', 'Equity'],
+      ...payload.timestamp.map((ts: number, i: number) => [new Date(ts * 1000), Number(payload.equity?.[i] ?? null)])
+    ];
+  }, [payload]);
+
+  const options = {
+    title: 'Equity Over Time',
+    curveType: 'function',
+    legend: { position: 'none' },
+    hAxis: { format: 'MMM dd' },
+    vAxis: { title: 'Equity' },
+    explorer: { axis: 'horizontal', keepInBounds: true },
+  };
+
   return (
     <Card className="h-100">
       <Card.Header>
@@ -44,7 +60,14 @@ export default function EquityChart() {
         <span className='text-secondary'>Alpaca:</span> <code>Automated_Process_Logs</code>
       </Card.Header>
       <Card.Body style={{ padding: 0 }}>
-        test
+        <Chart
+          chartType="LineChart"
+          width="100%"
+          height="320px"
+          data={chartData}
+          options={options}
+          loader={<div style={{ padding: 20 }}>Loading chart...</div>}
+        />
       </Card.Body>
     </Card>
   );
