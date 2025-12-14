@@ -61,6 +61,22 @@ export default function ClientTables({ processLogs, orders }: { processLogs: Log
     return sortBy(arr, ordersSortKey, ordersSortDir);
   }, [orders, ordersQuery, ordersSortKey, ordersSortDir]);
 
+  // NEW: derive dynamic columns for orders (exclude Id)
+  const orderColumns = useMemo(() => {
+    const cols = new Set<string>();
+    (orders || []).forEach((o) => {
+      Object.keys(o || {}).forEach((k) => {
+        if (k !== "Id") cols.add(k);
+      });
+    });
+    // stable order: sort alphabetically
+    return Array.from(cols).sort();
+  }, [orders]);
+
+  // New: table min-width helpers so columns have room
+  const logsTableMinWidth = 700;
+  const orderTableMinWidth = Math.max(800, orderColumns.length * 150);
+  
   const toggleLogsSort = (key: string) => {
     if (logsSortKey === key) {
       setLogsSortDir((d) => (d === "asc" ? "desc" : "asc"));
@@ -84,6 +100,13 @@ export default function ClientTables({ processLogs, orders }: { processLogs: Log
     return dir === "asc" ? " ▲" : " ▼";
   };
 
+  const renderOrderCell = (record: Order, key: string) => {
+    const v = record[key];
+    if (v === null || v === undefined) return "N/A";
+    if (typeof v === "object") return JSON.stringify(v);
+    return String(v);
+  };
+
   return (
     <>
       <div className="mb-3">
@@ -96,8 +119,9 @@ export default function ClientTables({ processLogs, orders }: { processLogs: Log
           />
           <Button variant="secondary" onClick={() => setLogsQuery("")}>Clear</Button>
         </div>
-        <div style={{ maxHeight: "400px", overflowY: "auto", padding: 16 }}>
-          <Table striped bordered hover>
+        {/* Allow horizontal scrolling and give table a minimum width */}
+        <div style={{ maxHeight: "400px", overflowY: "auto", padding: 16, overflowX: "auto" }}>
+          <Table striped bordered hover style={{ minWidth: logsTableMinWidth }}>
             <thead>
               <tr>
                 <th>#</th>
@@ -127,7 +151,7 @@ export default function ClientTables({ processLogs, orders }: { processLogs: Log
                     <td>{record.Id || "N/A"}</td>
                     <td>{record.CreatedDate || "N/A"}</td>
                     <td>{record.Status || "N/A"}</td>
-                    <td>{record.Description || "-"}</td>
+                    <td style={{ whiteSpace: "nowrap", overflow: "hidden", textOverflow: "ellipsis" }}>{record.Description || "-"}</td>
                   </tr>
                 ))
               )}
@@ -146,32 +170,39 @@ export default function ClientTables({ processLogs, orders }: { processLogs: Log
           />
           <Button variant="secondary" onClick={() => setOrdersQuery("")}>Clear</Button>
         </div>
-        <div style={{ maxHeight: "400px", overflowY: "auto", padding: 16 }}>
-          <Table striped bordered hover>
+        {/* Allow horizontal scrolling and give table a minimum width based on number of columns */}
+        <div style={{ maxHeight: "400px", overflowY: "auto", padding: 16, overflowX: "auto" }}>
+          <Table striped bordered hover style={{ minWidth: orderTableMinWidth }}>
             <thead>
               <tr>
                 <th>#</th>
                 <th style={{ cursor: "pointer" }} onClick={() => toggleOrdersSort("Id")}>
                   Id{arrow(ordersSortKey, "Id", ordersSortDir)}
                 </th>
-                <th>Record</th>
+                {orderColumns.map((col) => (
+                  <th key={col} style={{ cursor: "pointer", whiteSpace: "nowrap" }} onClick={() => toggleOrdersSort(col)}>
+                    {col}{arrow(ordersSortKey, col, ordersSortDir)}
+                  </th>
+                ))}
               </tr>
             </thead>
             <tbody>
               {filteredOrders.length === 0 ? (
                 <tr>
-                  <td colSpan={3}>No records found</td>
+                  <td colSpan={2 + orderColumns.length}>No records found</td>
                 </tr>
               ) : (
                 filteredOrders.map((record, i) => (
                   <tr key={record.Id || i}>
                     <td>{i + 1}</td>
                     <td>{record.Id || "N/A"}</td>
-                    <td>
-                      <pre style={{ margin: 0, whiteSpace: "pre-wrap", wordBreak: "break-all" }}>
-                        {JSON.stringify(record, null, 2)}
-                      </pre>
-                    </td>
+                    {orderColumns.map((col) => (
+                      <td key={col} style={{ verticalAlign: "top" }}>
+                        <pre style={{ margin: 0, whiteSpace: "pre", overflowX: "auto" }}>
+                          {renderOrderCell(record, col)}
+                        </pre>
+                      </td>
+                    ))}
                   </tr>
                 ))
               )}

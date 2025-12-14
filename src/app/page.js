@@ -15,8 +15,7 @@ export default function Home() {
         />
         <h1>Shawn wuz here</h1>
         <ol>
-          <li><a href="/charts">/charts</a></li>
-          <li><a href="/dashboard">/dashboard</a></li>
+          <li><a href="/macro-dashboard">/macro-dashboard</a></li>
           <li><a href="/algo-trader">/algo-trader</a></li>
           <li><a href="/health-tracker">/health-tracker</a></li>
           {/*
