@@ -111,6 +111,7 @@ const Page = async (props) => {
   return (
     <Container>
       <StrategySelection/>
+      <br />
       <ClientTablesNoSSR processLogs={process_logs} orders={orders} />
       <br />
       <EquityChartNoSSR input={portfolioHistory}/>
