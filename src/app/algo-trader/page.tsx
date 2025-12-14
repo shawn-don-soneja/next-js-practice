@@ -15,6 +15,7 @@ import { authOptions } from "../api/auth/auth.config";
 import { redirect } from "next/navigation";
 import { getServerSession } from "next-auth";
 import Button from 'react-bootstrap/Button';
+import StrategySelection from './StrategySelectionNoSSR';
 
 function getProtocol() {
   return process.env.NODE_ENV === 'development' ? 'http' : 'https';
@@ -72,6 +73,7 @@ const Page = async (props) => {
   // Display the data when successfully loaded
   return (
     <Container>
+      <StrategySelection/>
       <ClientTablesNoSSR processLogs={process_logs} orders={orders} />
       <br />
       <EquityChartNoSSR />
