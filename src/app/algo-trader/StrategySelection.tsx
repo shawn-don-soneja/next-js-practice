@@ -5,9 +5,9 @@ function StrategySelection() {
   return (
     <DropdownButton id="dropdown-item-button" title="Strategy">
       <Dropdown.ItemText><b>Select Strategy below:</b></Dropdown.ItemText>
-      <Dropdown.Item as="button">Manager</Dropdown.Item>
-      <Dropdown.Item as="button">Another action</Dropdown.Item>
-      <Dropdown.Item as="button">Something else</Dropdown.Item>
+      <Dropdown.Item as="button">Base Agent</Dropdown.Item>
+      <Dropdown.Item as="button">Macro Agent</Dropdown.Item>
+      <Dropdown.Item as="button">Penny Agent</Dropdown.Item>
     </DropdownButton>
   );
 }
