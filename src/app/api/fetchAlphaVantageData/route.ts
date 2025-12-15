@@ -39,7 +39,7 @@ export async function GET(request) {
 
     const formatted_spy_data = await formatForGoogleLineChart(spy_data["Time Series (Daily)"]);
 
-    console.log(spy_data, formatted_spy_data);
+    // console.log(spy_data, formatted_spy_data);
 
     // Combine both datasets in the response
     return new Response(

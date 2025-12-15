@@ -70,7 +70,6 @@ async function fetchAlpacaRecords() {
   return res_alpaca.json();
 }
 
-// fetch AlphaVantage data...
 async function fetchAlphaVantageRecords() {
   console.log('Fetching records from Alpaca...');
   const headersList = await headers();

@@ -34,22 +34,29 @@ export function formatAlpacaForGoogleLineChart(timeSeries: Record<string, any>) 
   return output;
 }
 
-export function mergeSeries(series_1: [number, number][], series_2: [number, number][]) {
+export function mergeSeries(series_1: [number, number][], series_2: [number, number][], startingEquity?: number) {
   console.log('merging!');
   console.log(series_1, series_2);
   let timestamps_1 = new Map();
   let timestamps_2 = new Map();
   let all_timestamps: Set<string> = new Set();
 
+  const shares = startingEquity ? startingEquity / series_2[0][1] : 1;
+  // Number of shares
+  // Multiply all spy values by number of shares to be normalized 
+
   // create maps from unix time stamp, to value, for both series
+  // Alpaca Portfolio data
   for (const entry of series_1){
     const dateString = convertUnixtoDateString(entry[0]);
     timestamps_1.set(dateString, entry[1]);
     all_timestamps.add(dateString);
   }
+
+  // SPY data
   for (const entry of series_2){
     const dateString = convertUnixtoDateString(entry[0]);
-    timestamps_2.set(dateString, entry[1]);
+    timestamps_2.set(dateString, entry[1] * shares);
     all_timestamps.add(dateString);
   }
 

@@ -44,7 +44,7 @@ export default function EquityChart({ input, spyData }: { input?: any, spyData?:
 
     if (spyData != null && input != null) {
       console.log('about to merge');
-      const portfolioAndSpy = mergeSeries(input, spyData);
+      const portfolioAndSpy = mergeSeries(input, spyData, 10000);
       console.log('merged: ', portfolioAndSpy);
       return portfolioAndSpy;
     }
@@ -61,7 +61,14 @@ export default function EquityChart({ input, spyData }: { input?: any, spyData?:
     legend: { position: 'none' },
     hAxis: { format: 'MMM dd' },
     vAxis: { title: 'Equity' },
-    explorer: { axis: 'horizontal', keepInBounds: true },
+    explorer: {
+      // Allows dragging to zoom in and right-click to reset zoom
+      actions: ['dragToZoom', 'rightClickToReset'], 
+      axis: 'horizontal', // Zoom only on the horizontal (x) axis
+      keepInBounds: true, // Prevents panning outside the data range
+      maxZoomIn: 0.01, // Optional: limits how far you can zoom in
+      maxZoomOut: 1, // Optional: limits how far you can zoom out
+    },
     colors: ["#e69138", "#097138"],
   };
 
