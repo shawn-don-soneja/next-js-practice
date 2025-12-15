@@ -1,4 +1,6 @@
 import { getToken } from "next-auth/jwt";
+import { formatForGoogleLineChart } from "../../../lib";
+import { formatAlpacaForGoogleLineChart } from "../../../lib/formatForReactGoogleCharts";
 
 export async function GET(request) {
   const session = await getToken({ req: request, secret: process.env.NEXTAUTH_SECRET });
@@ -7,7 +9,7 @@ export async function GET(request) {
   const alpacaSecret = process.env.ALPACA_SECRET_KEY;
   const portfolioHistoryEndpoint = process.env.ALPACA_PORTFOLIO_HISTORY_ENDPOINT;
 
-  console.log("Session:", session);
+  //console.log("Session:", session);
 
   if (!session) {
     return new Response(JSON.stringify({ error: "Not authenticated" }), {
@@ -43,11 +45,12 @@ export async function GET(request) {
     ]);
 
     const portfolioHistory = await portfolioResponse.json();
+    const formattedPortfolioHistory = await formatAlpacaForGoogleLineChart(portfolioHistory);
 
     // Combine both datasets in the response
     return new Response(
         JSON.stringify({
-        data: portfolioHistory,
+        data: formattedPortfolioHistory,
       }),
       {
         status: 200,
