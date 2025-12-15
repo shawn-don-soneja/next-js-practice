@@ -10,7 +10,7 @@ const ddb = DynamoDBDocumentClient.from(ddbClient);
 export async function GET(request) {
   const session = await getToken({ req: request, secret: process.env.NEXTAUTH_SECRET }); // ✅ changed
 
-  console.log("Session:", session);
+  //console.log("Session:", session);
 
   if (!session) {
     return new Response(JSON.stringify({ error: "Not authenticated" }), {

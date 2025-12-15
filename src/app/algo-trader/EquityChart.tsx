@@ -2,6 +2,7 @@
 import React, { useMemo } from 'react';
 import { Card } from 'react-bootstrap';
 import { Chart } from 'react-google-charts';
+import { mergeSeries } from '../../lib/formatForReactGoogleCharts';
 
 const defaultEquityData = {
   timestamp: [
@@ -20,6 +21,7 @@ const defaultEquityData = {
   ]
 };
 
+// used for data retrieval from Alpaca Portfolio History
 type EquityInput = {
   timestamp?: number[];
   equity?: number[];
@@ -30,19 +32,28 @@ type EquityInput = {
   timeframe?: string;
 };
 
-export default function EquityChart({ input }: { input?: any }) {
-  const payload: EquityInput = useMemo(() => {
-    if (!input) return defaultEquityData;
-    return input?.data ?? input ?? defaultEquityData;
-  }, [input]);
+export default function EquityChart({ input, spyData }: { input?: any, spyData?: any}) {
+  console.log('loading equity chart');
+  console.log('1', input);
+  console.log('2', spyData);
 
   const chartData = useMemo(() => {
-    if (!payload?.timestamp || !payload?.equity) return [['Date', 'Equity']];
+    console.log('ugh 0');
+    if (input.length <= 0) return [['Date', 'Equity']];
+    console.log('ugh 1');
+
+    if (spyData != null && input != null) {
+      console.log('about to merge');
+      const portfolioAndSpy = mergeSeries(input, spyData);
+      console.log('merged: ', portfolioAndSpy);
+      return portfolioAndSpy;
+    }
+    
     return [
       ['Date', 'Equity'],
-      ...payload.timestamp.map((ts: number, i: number) => [new Date(ts * 1000), Number(payload.equity?.[i] ?? null)])
+      []
     ];
-  }, [payload]);
+  }, [input, spyData]);
 
   const options = {
     title: 'Equity Over Time',

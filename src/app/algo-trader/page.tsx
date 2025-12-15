@@ -44,7 +44,7 @@ async function fetchAwsRecords() {
 
   if (!res_aws.ok) {
     const errorText = await res_aws.text(); // Attempt to get error details from the response
-    throw new Error(`Failed to fetch records: ${res_aws.status} ${res_aws.statusText} - ${errorText}`);
+    throw new Error(`Failed to fetch aws records: ${res_aws.status} ${res_aws.statusText} - ${errorText}`);
   }
   return res_aws.json();
 }
@@ -65,9 +65,31 @@ async function fetchAlpacaRecords() {
   });
   if (!res_alpaca.ok) {
     const errorText = await res_alpaca.text(); // Attempt to get error details from the response
-    throw new Error(`Failed to fetch records: ${res_alpaca.status} ${res_alpaca.statusText} - ${errorText}`);
+    throw new Error(`Failed to fetch alpaca records: ${res_alpaca.status} ${res_alpaca.statusText} - ${errorText}`);
   }
   return res_alpaca.json();
+}
+
+// fetch AlphaVantage data...
+async function fetchAlphaVantageRecords() {
+  console.log('Fetching records from Alpaca...');
+  const headersList = await headers();
+  const host = headersList.get('host');
+  const protocol = getProtocol();
+  const myAlphaVantageUrl = `${protocol}://${host}/api/fetchAlphaVantageData`;
+  const cookie = headersList.get('cookie');
+  const res_alphaVantage = await fetch(myAlphaVantageUrl, {
+    next: { revalidate: 0 },
+    headers: {
+      'Content-Type': 'application/json',
+      cookie: cookie || '',
+    },
+  });
+  if (!res_alphaVantage.ok) {
+    const errorText = await res_alphaVantage.text(); // Attempt to get error details from the response
+    throw new Error(`Failed to fetch alpha vantage records: ${res_alphaVantage.status} ${res_alphaVantage.statusText} - ${errorText}`);
+  }
+  return res_alphaVantage.json();
 }
 
 type Order = { Id?: string; [key: string]: any };
@@ -81,11 +103,22 @@ type PortfolioHistory = {
   base_value_asof?: string;
   timeframe?: string;
 };
+type StockDataEntry =
+{
+  [key: string]: {
+    "1. open": string;
+    "2. high": string;
+    "3. low": string;
+    "4. close": string;
+    "5. volume": string;
+  };
+};
 
 const Page = async (props) => {
   let process_logs: Log[] = [];
   let orders: Order[] = [];
   let portfolioHistory: PortfolioHistory[] = [];
+  let spyData: StockDataEntry[] = [];
   try {
     let awsResponse = await fetchAwsRecords();
     process_logs = awsResponse.logs || [];
@@ -93,6 +126,10 @@ const Page = async (props) => {
 
     let alpacaResponse = await fetchAlpacaRecords();
     portfolioHistory = alpacaResponse.data || [];
+
+    let alphaVantageResponse = await fetchAlphaVantageRecords();
+    spyData = alphaVantageResponse.data || [];
+    
   } catch (error) {
     console.error('Error fetching records:', error);
     return (
@@ -114,7 +151,7 @@ const Page = async (props) => {
       <br />
       <ClientTablesNoSSR processLogs={process_logs} orders={orders} />
       <br />
-      <EquityChartNoSSR input={portfolioHistory}/>
+      <EquityChartNoSSR input={portfolioHistory} spyData={spyData}/>
       <br />
       {/* New Orders Chart Card */}
       <Card>
