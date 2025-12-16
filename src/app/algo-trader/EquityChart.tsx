@@ -76,7 +76,7 @@ export default function EquityChart({ input, spyData }: { input?: any, spyData?:
     <Card className="h-100">
       <Card.Header>
         <h3>Portfolio Value</h3>
-        <span className='text-secondary'>Alpaca:</span> <code>/account/portfolio/history?period=1M&timeframe=1D</code>
+        <span className='text-secondary'>Alpaca:</span> <code>/account/portfolio/history?period=1A&timeframe=1D</code>
       </Card.Header>
       <Card.Body style={{ padding: 0 }}>
         <Chart
