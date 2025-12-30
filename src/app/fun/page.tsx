@@ -45,6 +45,18 @@ export default function FunPage() {
                 </Card>
             </Col>
         </Row>
+        <Row>
+            <Col className="mb-4 d-inline-block justify-content-center" lg={true}>
+                <Card className={styles.card}>
+                    <h3 className={styles.header}>Quick Notes<Badge bg="secondary" className={styles.badgeText}></Badge></h3>
+                </Card>
+            </Col>
+            <Col className="mb-4 d-inline-block justify-content-center" lg={true}>
+                <Card className={styles.card}>
+                    <h3 className={styles.header}>Add drag and drop reordering? + Reset<Badge bg="secondary" className={styles.badgeText}></Badge></h3>
+                </Card>
+            </Col>
+        </Row>
     </Container>
   );
 }
