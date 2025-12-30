@@ -8,7 +8,6 @@ export default function Home() {
         <h1>Shawn wuz here</h1>
         <ol>
           <li><a href="/macro-dashboard">/macro-dashboard</a></li>
-          <li><a href="/algo-trader">/algo-trader</a></li>
           <li><a href="/health-tracker">/health-tracker</a></li>
           {/*
           <li>Get started by editing <code>src/app/page.js</code>.</li>

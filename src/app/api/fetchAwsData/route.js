@@ -20,8 +20,8 @@ export async function GET(request) {
   }
 
   try {
-    const data = await ddb.send(new ScanCommand({ TableName: "Automated_Process_Logs" }));
-    const data2 = await ddb.send(new ScanCommand({ TableName: "Financial_Data_Orders" }));
+    const data = await ddb.send(new ScanCommand({ TableName: "Dummy_Table_Name" }));
+    const data2 = await ddb.send(new ScanCommand({ TableName: "Dummy_Table_Name" }));
 
     //console.log("Data fetched from DynamoDB:", data);
 
