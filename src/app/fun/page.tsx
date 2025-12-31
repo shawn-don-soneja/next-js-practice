@@ -36,19 +36,23 @@ export default function FunPage() {
         <Row>
             <Col className="mb-4 d-inline-block justify-content-center" lg={true}>
                 <Card className={styles.card}>
-                    <h3 className={styles.header}>1. GDP ($T): <Badge bg="secondary" className={styles.badgeText}></Badge></h3>
+                    <h3 className={styles.header}>Youtube Playlist Links: <Badge bg="secondary" className={styles.badgeText}></Badge></h3>
                 </Card>
             </Col>
             <Col className="mb-4 d-inline-block justify-content-center" lg={true}>
                 <Card className={styles.card}>
-                    <h3 className={styles.header}>1. GDP ($T): <Badge bg="secondary" className={styles.badgeText}></Badge></h3>
+                    <h3 className={styles.header}>Random Ideas?<Badge bg="secondary" className={styles.badgeText}></Badge></h3>
+                    <p>could be random trackers from looperman, for cakewalk</p>
+                    <p>new vsts, or new music from certain artists</p>
+                    <p>cool art if I can find such a feed</p>
+                    <p>or even podcasts from certain folks</p>
                 </Card>
             </Col>
         </Row>
         <Row>
             <Col className="mb-4 d-inline-block justify-content-center" lg={true}>
                 <Card className={styles.card}>
-                    <h3 className={styles.header}>Quick Notes<Badge bg="secondary" className={styles.badgeText}></Badge></h3>
+                    <h3 className={styles.header}>Quick Notes (persistent... supports like <i>bookmarks</i><Badge bg="secondary" className={styles.badgeText}></Badge></h3>
                 </Card>
             </Col>
             <Col className="mb-4 d-inline-block justify-content-center" lg={true}>
