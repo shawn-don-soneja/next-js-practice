@@ -1,24 +1,27 @@
+/* large */
 .card {
-  width: 602px;
+  width: 450px;
   margin: auto;
   overflow: hidden;
 }
 
+/* medium */
 @media (max-width: 1400px) and (min-width: 650px) {
   .card {
-    width: 702px;
+    width: 320px;
   }
 }
 
+/* small */
 @media (max-width: 650px) {
   .card {
-    max-width: 375px;
+    max-width: 400px;
   }
 }
 
 .header {
   margin: 1rem;
-  margin-bottom: 0;
+  margin-bottom: 1rem;
   color: #212529;
   font-size: clamp(1rem, 2.5vw, 1.5rem); /* Adjust dynamically */
   line-height: 1.5;
