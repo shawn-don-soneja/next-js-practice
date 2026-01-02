@@ -9,7 +9,7 @@ export default function Home() {
         <ol>
           <li><a href="/macro-dashboard">/macro-dashboard</a></li>
           <li><a href="/health-tracker">/health-tracker</a></li>
-          <li><a href="/fun">/fun</a></li>
+          {/* <li><a href="/fun">/fun</a></li> */}
           {/*
           <li>Get started by editing <code>src/app/page.js</code>.</li>
           <li>Save and see your changes instantly.</li>
