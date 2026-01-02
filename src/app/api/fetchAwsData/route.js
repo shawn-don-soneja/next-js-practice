@@ -10,7 +10,7 @@ const ddb = DynamoDBDocumentClient.from(ddbClient);
 export async function GET(request) {
   const session = await getToken({ req: request, secret: process.env.NEXTAUTH_SECRET }); // ✅ changed
 
-  console.log("Session:", session);
+  //console.log("Session:", session);
 
   if (!session) {
     return new Response(JSON.stringify({ error: "Not authenticated" }), {
@@ -20,10 +20,10 @@ export async function GET(request) {
   }
 
   try {
-    const data = await ddb.send(new ScanCommand({ TableName: "Automated_Process_Logs" }));
-    const data2 = await ddb.send(new ScanCommand({ TableName: "Financial_Data_Orders" }));
+    const data = await ddb.send(new ScanCommand({ TableName: "Dummy_Table_Name" }));
+    const data2 = await ddb.send(new ScanCommand({ TableName: "Dummy_Table_Name" }));
 
-    console.log("Data fetched from DynamoDB:", data);
+    //console.log("Data fetched from DynamoDB:", data);
 
     // Sort both datasets by CreatedDate descending (newest first)
     const sortedLogs = data.Items && data.Items.length
